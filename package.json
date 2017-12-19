@@ -1,0 +1,76 @@
+{
+  "name": "@sjs/base-model",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "repository": "https://github.com/codeBelt/sjs-base-model.git",
+  "author": "Robert S. <code@codebelt.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.9.1"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/jest": "21.1.8",
+    "jest": "21.2.1",
+    "npm-run-all": "4.1.2",
+    "rollup": "0.52.2",
+    "rollup-plugin-commonjs": "8.2.6",
+    "rollup-plugin-node-resolve": "3.0.0",
+    "rollup-plugin-typescript2": "0.8.4",
+    "rollup-plugin-uglify": "2.0.1",
+    "serve": "6.4.1",
+    "ts-jest": "21.2.4",
+    "tslint": "5.8.0",
+    "tslint-eslint-rules": "4.1.1",
+    "typescript": "2.6.2"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "npm-run-all --parallel start watch",
+    "lint": "tslint -c tslint.json \"src/**/*.ts\"",
+    "lint:fix": "tslint --fix -c tslint.json \"src/**/*.ts\"",
+    "prebuild": "rm -rf ./lib",
+    "prestart": "npm run build",
+    "start": "serve lib",
+    "test": "jest",
+    "watch": "rollup -c -w"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!shiva/)"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      },
+      "google": {}
+    },
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.schema.ts",
+      "!src/schema/*.ts"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/?(*.)test.ts",
+      "<rootDir>/tests/**/?(*.)test.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts)$": "<rootDir>/node_modules/ts-jest/preprocessor.js",
+      "^.+\\.js$": "babel-jest"
+    }
+  }
+}

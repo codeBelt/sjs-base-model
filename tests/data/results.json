@@ -1,0 +1,121 @@
+{
+  "results": [
+    {
+      "gender": "female",
+      "name": {
+        "title": "miss",
+        "first": "louane",
+        "last": "vidal"
+      },
+      "location": {
+        "street": "5307 place de l'église",
+        "city": "courbevoie",
+        "state": "bouches-du-rhône",
+        "postcode": 95660
+      },
+      "email": "louane.vidal@example.com",
+      "login": {
+        "username": "silverbear716",
+        "password": "mylove",
+        "salt": "VB5ywSDU",
+        "md5": "3648c7f924c885e06c8be83dac24b6e5",
+        "sha1": "71d2ebc044f8d03fea28508a825093d6d1fb5248",
+        "sha256": "f0848680ab64980ac8d70ce59d9803030e541b9e635086c692b5b017b1e38feb"
+      },
+      "dob": "1994-12-31 14:12:33",
+      "registered": "2008-01-12 13:34:34",
+      "phone": "05-36-23-51-89",
+      "cell": "06-80-78-08-31",
+      "id": {
+        "name": "INSEE",
+        "value": "2941110177623 61"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/79.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/79.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/79.jpg"
+      },
+      "nat": "FR"
+    },
+    {
+      "gender": "female",
+      "name": {
+        "title": "ms",
+        "first": "indra",
+        "last": "grimberg"
+      },
+      "location": {
+        "street": "9955 kleine singel",
+        "city": "rheden",
+        "state": "utrecht",
+        "postcode": 71670
+      },
+      "email": "indra.grimberg@example.com",
+      "login": {
+        "username": "beautifulbear275",
+        "password": "dddddd",
+        "salt": "xXDlG0rR",
+        "md5": "b249edbcb8e4244f057780606186caeb",
+        "sha1": "e2022f033a6456d4040942650470244e379c70b5",
+        "sha256": "cc9983f7d82de54611b1e81e6c6059207c76d0e04b3b96ae28933eeb711ac486"
+      },
+      "dob": "1947-10-29 16:36:28",
+      "registered": "2003-08-01 01:16:44",
+      "phone": "(354)-415-2419",
+      "cell": "(564)-429-5081",
+      "id": {
+        "name": "BSN",
+        "value": "22754468"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/84.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/84.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/84.jpg"
+      },
+      "nat": "NL"
+    },
+    {
+      "gender": "male",
+      "name": {
+        "title": "monsieur",
+        "first": "angelo",
+        "last": "louis"
+      },
+      "location": {
+        "street": "8766 boulevard de balmont",
+        "city": "montpreveyres",
+        "state": "solothurn",
+        "postcode": 8882
+      },
+      "email": "angelo.louis@example.com",
+      "login": {
+        "username": "goldenbear702",
+        "password": "tester",
+        "salt": "A8UP9HSZ",
+        "md5": "bc4f717a7c7cce4411d1469e813951a0",
+        "sha1": "381f6fcd1d4d6a05057c5fb20a37548fa9cfc961",
+        "sha256": "5a67d54d986934dbc65125b78e1f3bbfd01257f25cbd60f7a3146867555eb6c5"
+      },
+      "dob": "1972-02-05 06:46:38",
+      "registered": "2011-08-16 00:49:52",
+      "phone": "(883)-474-9314",
+      "cell": "(751)-863-1077",
+      "id": {
+        "name": "AVS",
+        "value": "756.RNFM.CDVK.68"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/13.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/13.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/13.jpg"
+      },
+      "nat": "CH"
+    }
+  ],
+  "info": {
+    "seed": "abc",
+    "results": 3,
+    "page": 1,
+    "version": "1.1"
+  }
+}
