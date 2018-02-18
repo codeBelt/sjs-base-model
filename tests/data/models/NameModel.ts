@@ -1,11 +1,11 @@
-import BaseModel from '../../../src/BaseModel';
 import {IBaseModelOptions} from '../../../src/IBaseModelOptions';
+import {BaseModel} from '../../../src';
 
 export class NameModel extends BaseModel {
 
-    public title: string = null;
-    public first: string = null;
-    public last: string = null;
+    public title: string = '';
+    public first: string = '';
+    public last: string = '';
 
     constructor(data: any = {}, opts: IBaseModelOptions = {}) {
         super(opts);

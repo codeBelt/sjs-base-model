@@ -1,7 +1,7 @@
-import {BaseModel} from '../../../src/BaseModel';
 import {IBaseModelOptions} from '../../../src/IBaseModelOptions';
 import {InfoModel} from './InfoModel';
 import {UserModel} from './UserModel';
+import {BaseModel} from '../../../src';
 
 export class UserResponseModel extends BaseModel {
 

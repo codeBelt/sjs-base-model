@@ -1,12 +1,12 @@
-import BaseModel from '../../../src/BaseModel';
 import {IBaseModelOptions} from '../../../src/IBaseModelOptions';
+import {BaseModel} from '../../../src';
 
 export class InfoModel extends BaseModel {
 
-    public seed: string = null;
+    public seed: string = '';
     public results: number = null;
     public page: number = null;
-    public version: string = null;
+    public version: string = '';
 
     constructor(data: any = {}, opts: IBaseModelOptions = {}) {
         super(opts);

@@ -1,27 +1,24 @@
 import {BaseObject} from '../src/BaseObject';
+import {InfoModel} from './data/models/InfoModel';
 
 describe('BaseObject', function() {
 
-    let baseObject = null;
-
-    beforeEach(() => {
-        baseObject = new BaseObject();
-    });
-
     it('baseObject.sjsId', function() {
+        const baseObject = new BaseObject();
         const expected: number = 1;
         const actual: number = baseObject.sjsId;
 
         expect(expected).toEqual(actual);
     });
 
-    xit('baseObject.destroy()', function() {
-        const expected: number = 1;
-        const actual: number = baseObject.sjsId;
+    it('baseObject.destroy()', function() {
+        const infoModel = new InfoModel();
 
-        baseObject.destroy();
+        expect(infoModel.sjsOptions).toEqual({expand: false});
 
-        expect(expected).toEqual(actual);
+        infoModel.destroy();
+
+        expect(infoModel.sjsOptions).toBe(null);
     });
 
 });
