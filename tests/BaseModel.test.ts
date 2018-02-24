@@ -57,6 +57,18 @@ describe('BaseModel', () => {
         expect(model.toJSON()).toEqual(expectedData);
     });
 
+    it('should have populate UserResponseModel from same UserResponseModel', () => {
+        let model = new UserResponseModel(json);
+        model = new UserResponseModel(model);
+
+        const expectedData = {
+            ...json,
+            results: json.results.map((resultItem) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
+        };
+
+        expect(model.toJSON()).toEqual(expectedData);
+    });
+
     it('should update email results to one item in the array', () => {
         const model = new UserResponseModel(json);
 
