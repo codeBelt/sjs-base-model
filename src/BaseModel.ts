@@ -195,16 +195,16 @@ export class BaseModel extends BaseObject implements IBaseModel {
      * @protected
      */
     protected _getPropertyData(currentPropertyData: any, passedInDataForProperty: any): any {
-        if (currentPropertyData instanceof Array === true) {
+        if (Array.isArray(currentPropertyData) === true) {
             const fistItemInArray: any = currentPropertyData[0];
             const isBaseModelObject: boolean = this._isBaseModelObject(fistItemInArray);
             const isBaseModelClass: boolean = this._isBaseModelClass(fistItemInArray);
 
-            if (passedInDataForProperty instanceof Array === false && isBaseModelClass) {
+            if (Array.isArray(passedInDataForProperty) === false && isBaseModelClass) {
                 return [];
             }
 
-            if (passedInDataForProperty instanceof Array === false) {
+            if (Array.isArray(passedInDataForProperty) === false) {
                 return currentPropertyData;
             }
 

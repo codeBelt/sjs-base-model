@@ -64,7 +64,7 @@ describe('BaseModel', () => {
 
         model.update({
             results: [{
-                email: 'cool@cool.com',
+                email: 'example@example.com',
                 name: {
                     last: 'Cool'
                 }
@@ -79,7 +79,7 @@ describe('BaseModel', () => {
                 picture: null,
                 gender: '',
                 nat: '',
-                email: 'cool@cool.com',
+                email: 'example@example.com',
                 name: {
                     first: '',
                     title: '',
@@ -106,13 +106,13 @@ describe('BaseModel', () => {
         expect(model.name.last).toBe(theData.name.last);
 
         model.update({
-            email: 'cool@cool.com',
+            email: 'example@example.com',
             name: {
                 last: 'Cool',
             },
         });
 
-        expect(model.email).toBe('cool@cool.com');
+        expect(model.email).toBe('example@example.com');
         expect(model.name.toJSON()).toEqual({
             ...theData.name,
             last: 'Cool',
