@@ -51,7 +51,7 @@ export class BaseObject {
     public destroy(): void {
         Object.keys(this)
             .filter((propertyName: string) => propertyName !== 'sjsId')
-            .forEach((propertyName: string) => this[propertyName] = null);
+            .forEach((propertyName: string) => (this as any)[propertyName] = null);
     }
 
 }

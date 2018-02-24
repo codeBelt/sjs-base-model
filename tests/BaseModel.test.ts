@@ -12,7 +12,7 @@ describe('BaseModel', () => {
 
     beforeEach(() => {
         baseModel = new BaseModel();
-        json = Util.clone(data.default);
+        json = Util.clone(data);
     });
 
     it('update returns itself', () => {
