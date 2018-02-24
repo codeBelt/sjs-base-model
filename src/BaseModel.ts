@@ -200,7 +200,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
             const isBaseModelObject: boolean = this._isBaseModelObject(fistItemInArray);
             const isBaseModelClass: boolean = this._isBaseModelClass(fistItemInArray);
 
-            if (Array.isArray(passedInDataForProperty) === false && isBaseModelClass) {
+            if (Array.isArray(passedInDataForProperty) === false && isBaseModelClass === true) {
                 return [];
             }
 
@@ -208,11 +208,11 @@ export class BaseModel extends BaseObject implements IBaseModel {
                 return currentPropertyData;
             }
 
-            if (isBaseModelClass) {
+            if (isBaseModelClass === true) {
                 return passedInDataForProperty.map((json: object) => new fistItemInArray(json, this.sjsOptions));
             }
 
-            if (isBaseModelObject) {
+            if (isBaseModelObject === true) {
                 return passedInDataForProperty.map((json: object) => new (fistItemInArray as any).constructor(json, this.sjsOptions));
             }
 
@@ -237,7 +237,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
             && typeof passedInDataForProperty === 'object'
             && Object.keys(passedInDataForProperty).length > 0;
 
-        if (isBaseModelObject && isPassedInDataAnObjectWithProperties) {
+        if (isBaseModelObject === true && isPassedInDataAnObjectWithProperties === true) {
             // Call the update method on th BaseModel object and give it the passed in data.
             const baseModel: BaseModel = currentPropertyData;
 
@@ -246,7 +246,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
             return baseModel;
         }
 
-        if (isBaseModelClass && (isPassedInDataAnObjectWithProperties || this.sjsOptions.expand === true)) {
+        if (isBaseModelClass === true && (isPassedInDataAnObjectWithProperties === true || this.sjsOptions.expand === true)) {
             // If data is passed in or the expand option is set to true then create the BaseModel.
             // Give the constructor the passed in data or an empty object if the expand is true.
             const obj: object = isPassedInDataAnObjectWithProperties
@@ -254,7 +254,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
                 : {};
 
             return new currentPropertyData(obj, this.sjsOptions);
-        } else if (isBaseModelClass) {
+        } else if (isBaseModelClass === true) {
             // Don't create the BaseModel if there is no data passed in. Return null to be assigned to the property.
             return null;
         }
