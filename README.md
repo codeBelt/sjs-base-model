@@ -120,7 +120,7 @@ Converts the string json data into an Object and calls the update method with th
 ```
 
 #### clone()
-Create a clone/copy of the BaseModel.
+Creates a clone/copy of the BaseModel.
 ```javascript
 const clone = carModel.clone();
 ```
