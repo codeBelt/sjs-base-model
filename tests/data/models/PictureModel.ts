@@ -1,11 +1,11 @@
-import BaseModel from '../../../src/BaseModel';
 import {IBaseModelOptions} from '../../../src/IBaseModelOptions';
+import {BaseModel} from '../../../src';
 
 export class PictureModel extends BaseModel {
 
-    public large: string = null;
-    public medium: string = null;
-    public thumbnail: string = null;
+    public large: string = '';
+    public medium: string = '';
+    public thumbnail: string = '';
 
     constructor(data: any = {}, opts: IBaseModelOptions = {}) {
         super(opts);

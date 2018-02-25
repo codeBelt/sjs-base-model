@@ -49,11 +49,9 @@ export class BaseObject {
      *     }
      */
     public destroy(): void {
-        for (const key in this) {
-            if (this.hasOwnProperty(key) && key !== 'sjsId') {
-                this[key] = null;
-            }
-        }
+        Object.keys(this)
+            .filter((propertyName: string) => propertyName !== 'sjsId')
+            .forEach((propertyName: string) => (this as any)[propertyName] = null);
     }
 
 }
