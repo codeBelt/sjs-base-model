@@ -124,7 +124,7 @@ export class CarModel extends BaseModel {
 ## Real World
 I like to keep my data consistent in my applications. So I like everything to be `camelCase`. It's hard when dealing with different data api's. Each one can return a differnt case type (`kebab-case`, `snake_case`, `PascalCase`, `camelCase`, `UPPER_CASE` and this one `@propertyName`). 
 
-So what you can do. For example is create a class called [PropertyNormalizerModel](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba#file-propertynormalizermodel-ts) that extends `sjs-base-mode` that normalizes the data coming in. Then all your other models extends PropertyNormalizerModel.
+What you can do is create a class called [PropertyNormalizerModel](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba#file-propertynormalizermodel-ts) that extends `sjs-base-mode` that normalizes the data coming in. Then all your other models extends PropertyNormalizerModel.
 
 See [example code](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba) for ideas.
 
