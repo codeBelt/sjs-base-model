@@ -2,6 +2,14 @@
 
 BaseModel helps translate data to models
 
+## Install
+
+With [Node.js](http://nodejs.org):
+
+    $ npm install sjs-base-model
+    
+## Usage
+
 ```javascript
 const apiData = {
         make: 'Tesla',
