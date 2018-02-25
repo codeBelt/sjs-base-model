@@ -11,7 +11,7 @@ const apiData = {
             abs: true,
             airbags: true
         },
-        colors: [{id: 'red' name: 'Red'}, {id: 'white' name: 'White'}]
+        colors: [{id: 'red', name: 'Red'}, {id: 'white', name: 'White'}]
 }
 ```
 ```javascript
