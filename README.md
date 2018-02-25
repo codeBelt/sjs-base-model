@@ -1,6 +1,6 @@
 # sjs-base-model
 
-Base Model helps map raw data into models
+BaseModel helps translate data to models
 
 ```javascript
 const apiData = {
