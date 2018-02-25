@@ -83,59 +83,45 @@ export class Util {
      * Makes a clone of an object.
      *
      * @method clone
-     * @param obj {Object} The object you to clone.
+     * @param src {Object} The object you to clone.
+     * @param renamePropertyName {(keyName: string) => string} Optional function to rename property names
      * @returns {any} Returns a clone object of the one passed in.
      * @public
      * @static
      * @example
      *      let cloneOfObject = Util.clone(obj);
      */
-    public static clone(obj: any): any {
-
-        // other scripts: http://davidwalsh.name/javascript-clone
-        // http://oranlooney.com/functional-javascript/
-        // http://oranlooney.com/deep-copy-javascript/
-
-        // Handle the 3 simple types, and null or undefined
-        if (obj == null || typeof obj !== 'object') {
-            return obj;
+    public static clone(src: any, renamePropertyName: (keyName: string) => string = null): any {
+        if (src === null || typeof src === 'undefined' || typeof src !== 'object') {
+            return src;
         }
 
-        // Handle Date
-        if (obj instanceof Date) {
-            const date: Date = new Date();
-
-            date.setTime(obj.getTime());
-
-            return date;
+        if (src instanceof Date) {
+            return new Date(src.getTime());
         }
 
-        // Handle Array
-        if (obj instanceof Array) {
-            const array: any[] = [];
-            const length: number = obj.length;
-
-            for (let i = 0; i < length; i++) {
-                array[i] = Util.clone(obj[i]);
-            }
-
-            return array;
+        if (src instanceof RegExp) {
+            return new RegExp(src);
         }
 
-        // Handle Object
-        if (obj instanceof Object) {
-            const copy: any = {};
-
-            for (const attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
-                    copy[attr] = Util.clone(obj[attr]);
-                }
-            }
-
-            return copy;
+        if (src instanceof Array) {
+            return src.map((item: any) => Util.clone(item, renamePropertyName));
         }
 
-        throw new Error(`[Util] Unable to clone type ${typeof obj}.`);
+        if (src instanceof Object) {
+            const objCopy: {[key: string]: any} = {};
+
+            Object.keys(src)
+                .forEach((keyName: string) => {
+                    const name: string = (renamePropertyName !== null) ? renamePropertyName(keyName) : keyName;
+
+                    objCopy[name] = Util.clone(src[keyName], renamePropertyName);
+                });
+
+            return objCopy;
+        }
+
+        throw new Error(`Unable to copy. ${src} isn't supported.`);
     }
 
 }

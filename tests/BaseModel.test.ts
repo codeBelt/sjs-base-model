@@ -7,8 +7,8 @@ import {Util} from '../src/Util';
 
 describe('BaseModel', () => {
 
-    let baseModel = null;
-    let json = null;
+    let baseModel: BaseModel = null;
+    let json: any = null;
 
     beforeEach(() => {
         baseModel = new BaseModel();
@@ -38,7 +38,7 @@ describe('BaseModel', () => {
 
         const expectedData = {
             ...json,
-            results: json.results.map((resultItem) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
+            results: json.results.map((resultItem: any) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
         };
 
         expect(model.toJSON()).toEqual(expectedData);
@@ -49,7 +49,7 @@ describe('BaseModel', () => {
 
         const expectedData = {
             ...json,
-            results: json.results.map((resultItem) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
+            results: json.results.map((resultItem: any) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
         };
 
         model.update({});
@@ -63,7 +63,7 @@ describe('BaseModel', () => {
 
         const expectedData = {
             ...json,
-            results: json.results.map((resultItem) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
+            results: json.results.map((resultItem: any) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
         };
 
         expect(model.toJSON()).toEqual(expectedData);
@@ -132,7 +132,7 @@ describe('BaseModel', () => {
     });
 
     it('should expand', () => {
-        const expected = {
+        const expected: any = {
             info: {
                 seed: '',
                 results: null,
