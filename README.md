@@ -89,12 +89,40 @@ export class CarModel extends BaseModel {
     }
     
 }
-
-
 ```
+
+## BaseModel Methods
+
+#### update(json)
 Example how to use the `update` method which will only change the property value(s) that were passed in
 ```javascript
 carModel.update({year: 2015, feature: {abs: true}});
+```
+
+#### toJSON()
+Converts the BaseModel data into a JSON object and deletes the sjsId property.
+```javascript
+const obj = carModel.toJSON();
+```
+
+#### toJSONString()
+Converts a BaseModel to a JSON string,
+```javascript
+const str = carModel.toJSONString();
+```
+
+#### fromJSON(jsonString)
+Converts the string json data into an Object and calls the update method with the converted Object.
+```javascript
+ const str = '{"make":"Tesla","model":"Model S","year":2014}'
+ const carModel = new CarModel();
+ carModel.fromJSON(str);
+```
+
+#### clone()
+Create a clone/copy of the BaseModel.
+```javascript
+const clone = carModel.clone();
 ```
 
 ## TypeScript Usage
