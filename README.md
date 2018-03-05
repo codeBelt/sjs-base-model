@@ -165,5 +165,8 @@ What you can do is create a class called [PropertyNormalizerModel](https://gist.
 See [example code](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba) for ideas.
 
 
+## Release History
 
-
+ * 2018-03-05 v1.1.0 Fixed issue: If an array of data passed in with no BaseModel assigned. It would set it as an empty array. Now it will assign the raw array data correctly.
+ 
+ * 2018-02-24 v1.0.0
