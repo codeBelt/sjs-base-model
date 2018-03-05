@@ -7,6 +7,7 @@ export class UserResponseModel extends BaseModel {
 
     public info: InfoModel = InfoModel as any;
     public results: UserModel[] = [UserModel as any];
+    public resultsAny: any[] = [];
 
     constructor(data: any = {}, opts: IBaseModelOptions = {}) {
         super(opts);

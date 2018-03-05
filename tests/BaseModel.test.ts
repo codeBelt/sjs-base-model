@@ -1,8 +1,8 @@
-import {BaseModel} from '../src/BaseModel';
 import * as data from './data/results.json';
-import {UserResponseModel} from './data/models/UserResponseModel';
+import {BaseModel} from '../src/BaseModel';
 import {InfoModel} from './data/models/InfoModel';
 import {UserModel} from './data/models/UserModel';
+import {UserResponseModel} from './data/models/UserResponseModel';
 import {Util} from '../src/Util';
 
 describe('BaseModel', () => {
@@ -140,6 +140,7 @@ describe('BaseModel', () => {
                 version: '',
             },
             results: [],
+            resultsAny: [],
         };
         const model = new UserResponseModel({}, {expand: true});
 

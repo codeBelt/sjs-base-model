@@ -216,7 +216,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
                 return passedInDataForProperty.map((json: object) => new (fistItemInArray as any).constructor(json, this.sjsOptions));
             }
 
-            return [];
+            return passedInDataForProperty;
         }
 
         return (passedInDataForProperty == null)
