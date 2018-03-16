@@ -23,7 +23,7 @@ const apiData = {
 }
 ```
 ```javascript
-const carModel = new CarModel(data);
+const carModel = new CarModel(apiData);
 ```
 This is how you should extend `sjs-base-model`
 ```javascript
