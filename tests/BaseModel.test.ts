@@ -168,6 +168,8 @@ describe('BaseModel', () => {
         expect(     baseModel['_isObject']('')                        ).toBeFalsy();
         expect(     baseModel['_isObject']('8')                       ).toBeFalsy();
         expect(     baseModel['_isObject'](null)                      ).toBeFalsy();
+
+        console.error('Ignore the "Something is wrong!" errors. There are expected.');
     });
 
 });

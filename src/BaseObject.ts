@@ -54,4 +54,8 @@ export class BaseObject {
             .forEach((propertyName: string) => (this as any)[propertyName] = null);
     }
 
+    public getClassName(): string {
+        return this.constructor.name;
+    }
+
 }
