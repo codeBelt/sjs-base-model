@@ -40,9 +40,7 @@ export class CarModel extends BaseModel {
     constructor(data = {}) {
         super();
         
-        if (data) {
-            this.update(data);
-        }
+        this.update(data);
     }
     
     update(data) {
@@ -75,9 +73,7 @@ export class CarModel extends BaseModel {
     constructor(data = {}) {
         super();
         
-        if (data) {
-            this.update(data);
-        }
+        this.update(data);
     }
     
     update(data) {
@@ -143,9 +139,7 @@ export class CarModel extends BaseModel {
     constructor(data: any = {}) {
         super();
     
-        if (data) {
-            this.update(data);
-        }
+        this.update(data);
     }
     
     update(data: any): void {

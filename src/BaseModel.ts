@@ -109,13 +109,17 @@ export class BaseModel extends BaseObject implements IBaseModel {
      *     carModel.allWheel = false;
      */
     public update(data: any = {}): any {
+        const dataToUse: any = this._isObject(data)
+            ? data
+            : {};
+
         Object
             .keys(this)
             .forEach((propertyName: string) => {
                 // Ignore the sjsId property because it is set in the BaseObject constructor and we don't want to update it.
                 if (propertyName !== 'sjsId' && propertyName !== 'sjsOptions') {
                     const currentPropertyData: any = (this as any)[propertyName];
-                    const passedInDataForProperty: any = data[propertyName];
+                    const passedInDataForProperty: any = dataToUse[propertyName];
 
                     (this as any)[propertyName] = this._getPropertyData(currentPropertyData, passedInDataForProperty);
                 }
@@ -287,6 +291,18 @@ export class BaseModel extends BaseObject implements IBaseModel {
      */
     protected _isBaseModelObject(currentPropertyData: any): boolean {
         return currentPropertyData instanceof BaseModel;
+    }
+
+    protected _isObject(data: any): boolean {
+        const isObject: boolean = (data != null)
+            && Array.isArray(data) === false
+            && typeof data === 'object';
+
+        if (isObject === false) {
+            console.error(`Something is wrong! ${this.constructor.name} only allows Objects but "${data}" was passed in.`);
+        }
+
+        return isObject;
     }
 
 }
