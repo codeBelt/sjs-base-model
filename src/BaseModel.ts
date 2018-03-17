@@ -293,6 +293,14 @@ export class BaseModel extends BaseObject implements IBaseModel {
         return currentPropertyData instanceof BaseModel;
     }
 
+    /**
+     * Check if the data is an object.
+     *
+     * @method _isObject
+     * @param data
+     * @returns {boolean}
+     * @protected
+     */
     protected _isObject(data: any): boolean {
         const isObject: boolean = Boolean(data)
             && Array.isArray(data) === false
