@@ -34,7 +34,7 @@ describe('BaseModel', () => {
     });
 
     it('should have default of UserResponseModel with null passed in', () => {
-        console.error('Ignore the "Something is wrong!" errors. There are expected.');
+        console.error('Ignore the "Something is wrong!" errors. They are expected.');
 
         const model = new UserResponseModel(null);
 
@@ -169,7 +169,7 @@ describe('BaseModel', () => {
         expect(     baseModel['_isObject']('8')                       ).toBeFalsy();
         expect(     baseModel['_isObject'](null)                      ).toBeFalsy();
 
-        console.error('Ignore the "Something is wrong!" errors. There are expected.');
+        console.error('Ignore the "Something is wrong!" errors. They are expected.');
     });
 
 });
