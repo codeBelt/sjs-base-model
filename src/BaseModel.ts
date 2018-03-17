@@ -294,7 +294,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
     }
 
     protected _isObject(data: any): boolean {
-        const isObject: boolean = (data != null)
+        const isObject: boolean = Boolean(data)
             && Array.isArray(data) === false
             && typeof data === 'object';
 
