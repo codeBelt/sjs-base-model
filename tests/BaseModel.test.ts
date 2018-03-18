@@ -160,7 +160,7 @@ describe('BaseModel', () => {
     fit('should test isObject', () => {
         type primative = string | number | boolean | symbol;
 
-        const objects: {}[] = [
+        const objects: object[] = [
             {},
             undefined,
         ];
@@ -174,7 +174,7 @@ describe('BaseModel', () => {
             Symbol(),
         ];
 
-        objects.forEach((object: {}) => expect(() => new UserResponseModel(object)).toBeTruthy());
+        objects.forEach((object: object) => expect(() => new UserResponseModel(object)).toBeTruthy());
         nonObjects.forEach((nonObject: primative) => expect(() => new UserResponseModel(nonObject)).toThrow());
     });
 
