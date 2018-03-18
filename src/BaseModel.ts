@@ -307,7 +307,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
             && typeof data === 'object';
 
         if (isObject === false) {
-            console.error(`Something is wrong! ${this.getClassName()} only allows Objects but "${data}" was passed in.`);
+            throw TypeError(`Something is wrong! ${this.getClassName()} only allows Objects but "${data}" was passed in.`);
         }
 
         return isObject;
