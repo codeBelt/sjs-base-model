@@ -62,7 +62,7 @@ export class BaseObject {
      * @public
      */
     public getClassName(): string {
-        return this.constructor.name;
+        return (this as any).constructor.name;
     }
 
 }

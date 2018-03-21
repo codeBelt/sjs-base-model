@@ -109,7 +109,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
      *     carModel.allWheel = false;
      */
     public update(data: any = {}): any {
-        const dataToUse: object = this._isObject(data)
+        const dataToUse: {[propertyName: string]: any} = this._isObject(data)
             ? data
             : {};
 
