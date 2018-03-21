@@ -157,25 +157,19 @@ describe('BaseModel', () => {
         expect(model.toJSON()).toEqual(expected);
     });
 
-    fit('should test isObject', () => {
-        type primative = string | number | boolean | symbol;
+    it('should test isObject', () => {
+        const baseModel = new BaseModel();
 
-        const objects: object[] = [
-            {},
-            undefined,
-        ];
-        const nonObjects: primative[] = [
-            true,
-            false,
-            null,
-            8,
-            20.18,
-            '🚀',
-            Symbol(),
-        ];
+        expect(     baseModel['_isObject'](new UserResponseModel())   ).toBeTruthy();
+        expect(     baseModel['_isObject']({})                        ).toBeTruthy();
+        expect(     baseModel['_isObject']([])                        ).toBeFalsy();
+        expect(     baseModel['_isObject'](undefined)                 ).toBeFalsy();
+        expect(     baseModel['_isObject'](8)                         ).toBeFalsy();
+        expect(     baseModel['_isObject']('')                        ).toBeFalsy();
+        expect(     baseModel['_isObject']('8')                       ).toBeFalsy();
+        expect(     baseModel['_isObject'](null)                      ).toBeFalsy();
 
-        objects.forEach((object: object) => expect(() => new UserResponseModel(object)).toBeTruthy());
-        nonObjects.forEach((nonObject: primative) => expect(() => new UserResponseModel(nonObject)).toThrow());
+        console.error('Ignore the "Something is wrong!" errors. They are expected.');
     });
 
 });
