@@ -12,9 +12,7 @@ export class UserResponseModel extends BaseModel {
     constructor(data: any = {}, opts: IBaseModelOptions = {}) {
         super(opts);
 
-        if (data) {
-            this.update(data);
-        }
+        this.update(data);
     }
 
     public update(data: any): void {

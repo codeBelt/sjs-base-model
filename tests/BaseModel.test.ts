@@ -33,6 +33,16 @@ describe('BaseModel', () => {
         expect(model.sjsOptions).toEqual({expand: false});
     });
 
+    it('should have default of UserResponseModel with null passed in', () => {
+        console.error('Ignore the "Something is wrong!" errors. They are expected.');
+
+        const model = new UserResponseModel(null);
+
+        expect(model.info).toEqual(null);
+        expect(model.results).toEqual([]);
+        expect(model.sjsOptions).toEqual({expand: false});
+    });
+
     it('should have populate UserResponseModel', () => {
         const model = new UserResponseModel(json);
 
@@ -145,6 +155,30 @@ describe('BaseModel', () => {
         const model = new UserResponseModel({}, {expand: true});
 
         expect(model.toJSON()).toEqual(expected);
+    });
+
+    it('should test isObject', () => {
+        const baseModel = new BaseModel();
+
+        const objects: object[] = [
+            {},
+            new UserResponseModel(),
+        ];
+        const nonObjects: any[] = [
+            [],
+            true,
+            false,
+            undefined,
+            null,
+            8,
+            20.18,
+            '🚀',
+        ];
+
+        objects.forEach((object: object) => expect(baseModel['_isObject'](object)).toBeTruthy());
+        nonObjects.forEach((nonObject: any) => expect(baseModel['_isObject'](nonObject)).toBeFalsy());
+
+        console.error('Ignore the "Something is wrong!" errors. They are expected.');
     });
 
 });

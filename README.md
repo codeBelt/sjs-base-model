@@ -40,9 +40,7 @@ export class CarModel extends BaseModel {
     constructor(data = {}) {
         super();
         
-        if (data) {
-            this.update(data);
-        }
+        this.update(data);
     }
     
     update(data) {
@@ -75,9 +73,7 @@ export class CarModel extends BaseModel {
     constructor(data = {}) {
         super();
         
-        if (data) {
-            this.update(data);
-        }
+        this.update(data);
     }
     
     update(data) {
@@ -102,13 +98,13 @@ carModel.update({year: 2015, feature: {abs: true}});
 #### toJSON()
 Converts the BaseModel data into a JSON object and deletes the sjsId property.
 ```javascript
-const obj = carModel.toJSON();
+const json = carModel.toJSON();
 ```
 
 #### toJSONString()
 Converts a BaseModel to a JSON string,
 ```javascript
-const str = carModel.toJSONString();
+const jsonStr = carModel.toJSONString();
 ```
 
 #### fromJSON(jsonString)
@@ -143,9 +139,7 @@ export class CarModel extends BaseModel {
     constructor(data: any = {}) {
         super();
     
-        if (data) {
-            this.update(data);
-        }
+        this.update(data);
     }
     
     update(data: any): void {
@@ -167,6 +161,8 @@ See [example code](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb920
 
 ## Release History
 
+ * 2018-03-20 v1.2.0 Handle null being passed in and console.error message. Remove null check condition from constructor in code examples.
+ 
  * 2018-03-05 v1.1.0 Fixed issue: If an array of data passed in with no BaseModel assigned. It would set it as an empty array. Now it will assign the raw array data correctly.
  
  * 2018-02-24 v1.0.0
