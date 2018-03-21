@@ -160,14 +160,23 @@ describe('BaseModel', () => {
     it('should test isObject', () => {
         const baseModel = new BaseModel();
 
-        expect(     baseModel['_isObject'](new UserResponseModel())   ).toBeTruthy();
-        expect(     baseModel['_isObject']({})                        ).toBeTruthy();
-        expect(     baseModel['_isObject']([])                        ).toBeFalsy();
-        expect(     baseModel['_isObject'](undefined)                 ).toBeFalsy();
-        expect(     baseModel['_isObject'](8)                         ).toBeFalsy();
-        expect(     baseModel['_isObject']('')                        ).toBeFalsy();
-        expect(     baseModel['_isObject']('8')                       ).toBeFalsy();
-        expect(     baseModel['_isObject'](null)                      ).toBeFalsy();
+        const objects: object[] = [
+            {},
+            new UserResponseModel(),
+        ];
+        const nonObjects: any[] = [
+            [],
+            true,
+            false,
+            undefined,
+            null,
+            8,
+            20.18,
+            '🚀',
+        ];
+
+        objects.forEach((object: object) => expect(baseModel['_isObject'](object)).toBeTruthy());
+        nonObjects.forEach((nonObject: any) => expect(baseModel['_isObject'](nonObject)).toBeFalsy());
 
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
     });
