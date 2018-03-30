@@ -161,6 +161,8 @@ See [example code](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb920
 
 ## Release History
 
+ * 2018-03-29 v1.3.0 If the default property value is an array and a object is passed for that property. It will put that object into an array.
+ 
  * 2018-03-20 v1.2.0 Handle null being passed in and console.error message. Remove null check condition from constructor in code examples.
  
  * 2018-03-05 v1.1.0 Fixed issue: If an array of data passed in with no BaseModel assigned. It would set it as an empty array. Now it will assign the raw array data correctly.

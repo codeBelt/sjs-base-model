@@ -14,5 +14,6 @@ export declare class BaseModel extends BaseObject implements IBaseModel {
     protected _updateData(currentPropertyData: any, passedInDataForProperty: any): any;
     protected _isBaseModelClass(currentPropertyData: any): boolean;
     protected _isBaseModelObject(currentPropertyData: any): boolean;
-    protected _isObject(data: any): boolean;
+    protected _isObjectWithProperties(data: any): boolean;
+    protected _isObject(data: any, consoleError?: boolean): boolean;
 }
