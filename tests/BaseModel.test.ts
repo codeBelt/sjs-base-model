@@ -33,6 +33,18 @@ describe('BaseModel', () => {
         expect(model.sjsOptions).toEqual({expand: false});
     });
 
+    it('should assign single object into array property of UserResponseModel', () => {
+        const model = new UserResponseModel({
+            results: {gender: 'male'},
+            resultsAny: {gender: 'male'},
+        });
+
+        expect(model.info).toEqual(null);
+        expect(model.results[0]).toBeInstanceOf(UserModel);
+        expect(model.results[0].gender).toEqual('male');
+        expect(model.resultsAny).toEqual([{gender: 'male'}]);
+    });
+
     it('should have default of UserResponseModel with null passed in', () => {
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
 

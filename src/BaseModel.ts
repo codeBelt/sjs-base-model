@@ -109,7 +109,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
      *     carModel.allWheel = false;
      */
     public update(data: any = {}): any {
-        const dataToUse: {[propertyName: string]: any} = this._isObject(data)
+        const dataToUse: {[propertyName: string]: any} = this._isObject(data, true)
             ? data
             : {};
 
@@ -204,23 +204,27 @@ export class BaseModel extends BaseObject implements IBaseModel {
             const isBaseModelObject: boolean = this._isBaseModelObject(fistItemInArray);
             const isBaseModelClass: boolean = this._isBaseModelClass(fistItemInArray);
 
-            if (Array.isArray(passedInDataForProperty) === false && isBaseModelClass === true) {
+            if (passedInDataForProperty == null && isBaseModelClass === true) {
                 return [];
             }
 
-            if (Array.isArray(passedInDataForProperty) === false) {
+            if (passedInDataForProperty == null) {
                 return currentPropertyData;
             }
 
+            const arrayData: any = this._isObject(passedInDataForProperty)
+                ? [passedInDataForProperty]
+                : passedInDataForProperty;
+
             if (isBaseModelClass === true) {
-                return passedInDataForProperty.map((json: object) => new fistItemInArray(json, this.sjsOptions));
+                return arrayData.map((json: object) => new fistItemInArray(json, this.sjsOptions));
             }
 
             if (isBaseModelObject === true) {
-                return passedInDataForProperty.map((json: object) => new (fistItemInArray as any).constructor(json, this.sjsOptions));
+                return arrayData.map((json: object) => new (fistItemInArray as any).constructor(json, this.sjsOptions));
             }
 
-            return passedInDataForProperty;
+            return arrayData;
         }
 
         return (passedInDataForProperty == null)
@@ -237,9 +241,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
     protected _updateData(currentPropertyData: any, passedInDataForProperty: any): any {
         const isBaseModelObject: boolean = this._isBaseModelObject(currentPropertyData);
         const isBaseModelClass: boolean = this._isBaseModelClass(currentPropertyData);
-        const isPassedInDataAnObjectWithProperties: boolean = passedInDataForProperty != null
-            && typeof passedInDataForProperty === 'object'
-            && Object.keys(passedInDataForProperty).length > 0;
+        const isPassedInDataAnObjectWithProperties: boolean = this._isObjectWithProperties(passedInDataForProperty);
 
         if (isBaseModelObject === true && isPassedInDataAnObjectWithProperties === true) {
             // Call the update method on th BaseModel object and give it the passed in data.
@@ -294,6 +296,18 @@ export class BaseModel extends BaseObject implements IBaseModel {
     }
 
     /**
+     * Check the data is an object with properties.
+     *
+     * @method _isObjectWithProperties
+     * @param data
+     * @returns {boolean}
+     * @protected
+     */
+    protected _isObjectWithProperties(data: any): boolean {
+        return this._isObject(data) && Object.keys(data).length > 0;
+    }
+
+    /**
      * Check if the data is an object.
      *
      * @method _isObject
@@ -301,12 +315,12 @@ export class BaseModel extends BaseObject implements IBaseModel {
      * @returns {boolean}
      * @protected
      */
-    protected _isObject(data: any): boolean {
+    protected _isObject(data: any, consoleError: boolean = false): boolean {
         const isObject: boolean = Boolean(data)
             && Array.isArray(data) === false
             && typeof data === 'object';
 
-        if (isObject === false) {
+        if (isObject === false && consoleError === true) {
             console.error(`Something is wrong! ${this.getClassName()} only allows Objects but "${data}" was passed in.`);
         }
 
