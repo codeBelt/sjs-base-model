@@ -1,6 +1,9 @@
 {
   "resultsAny": [{"test": "it"}],
   "singleStringToArray": ["male"],
+  "nullToArray": [],
+  "zeroToArray": [0],
+  "falseToArray": [false],
   "results": [
     {
       "gender": "female",

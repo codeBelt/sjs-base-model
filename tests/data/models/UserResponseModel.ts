@@ -9,6 +9,9 @@ export class UserResponseModel extends BaseModel {
     public results: UserModel[] = [UserModel as any];
     public resultsAny: any[] = [];
     public singleStringToArray: string[] = [];
+    public nullToArray: any[] = [];
+    public zeroToArray: number[] = [];
+    public falseToArray: boolean[] = [];
 
     constructor(data: any = {}, opts: IBaseModelOptions = {}) {
         super(opts);

@@ -38,6 +38,9 @@ describe('BaseModel', () => {
             results: {gender: 'male'},
             resultsAny: {gender: 'male'},
             singleStringToArray: 'male',
+            nullToArray: null,
+            zeroToArray: 0,
+            falseToArray: false,
         });
 
         expect(model.info).toEqual(null);
@@ -45,6 +48,9 @@ describe('BaseModel', () => {
         expect(model.results[0].gender).toEqual('male');
         expect(model.resultsAny).toEqual([{gender: 'male'}]);
         expect(model.singleStringToArray).toEqual(['male']);
+        expect(model.nullToArray).toEqual([]);
+        expect(model.zeroToArray).toEqual([0]);
+        expect(model.falseToArray).toEqual([false]);
     });
 
     it('should have default of UserResponseModel with null passed in', () => {
@@ -166,6 +172,9 @@ describe('BaseModel', () => {
             results: [],
             resultsAny: [],
             singleStringToArray: [],
+            nullToArray: [],
+            zeroToArray: [],
+            falseToArray: [],
         };
         const model = new UserResponseModel({}, {expand: true});
 
