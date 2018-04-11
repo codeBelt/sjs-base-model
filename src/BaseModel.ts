@@ -212,7 +212,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
                 return currentPropertyData;
             }
 
-            const arrayData: any[] = this._isObject(passedInDataForProperty)
+            const arrayData: any[] = (Array.isArray(passedInDataForProperty) === false)
                 ? [passedInDataForProperty]
                 : passedInDataForProperty;
 
