@@ -1,5 +1,6 @@
 {
   "resultsAny": [{"test": "it"}],
+  "singleStringToArray": ["male"],
   "results": [
     {
       "gender": "female",
