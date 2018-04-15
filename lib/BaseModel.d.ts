@@ -9,7 +9,7 @@ export declare class BaseModel extends BaseObject implements IBaseModel {
     toJSON(): any;
     toJSONString(): string;
     fromJSON(json: string): any;
-    clone(): BaseModel;
+    clone<T = BaseModel>(): T;
     protected _getPropertyData(currentPropertyData: any, passedInDataForProperty: any): any;
     protected _updateData(currentPropertyData: any, passedInDataForProperty: any): any;
     protected _isBaseModelClass(currentPropertyData: any): boolean;

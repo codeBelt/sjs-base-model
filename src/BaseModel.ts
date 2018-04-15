@@ -183,9 +183,11 @@ export class BaseModel extends BaseObject implements IBaseModel {
      * @public
      * @example
      *     const clone = carModel.clone();
+     *
+     *     const clone = carModel.clone<SomeModel>();
      */
-    public clone(): BaseModel {
-        const clonedBaseModel: BaseModel = new (this as any).constructor(this);
+    public clone<T = BaseModel>(): T {
+        const clonedBaseModel: T = new (this as any).constructor(this);
 
         return clonedBaseModel;
     }
