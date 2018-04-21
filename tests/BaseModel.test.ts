@@ -4,6 +4,7 @@ import {InfoModel} from './data/models/InfoModel';
 import {UserModel} from './data/models/UserModel';
 import {UserResponseModel} from './data/models/UserResponseModel';
 import {Util} from '../src/Util';
+import {ConversionInfoModel} from './data/models/ConversionInfoModel';
 
 describe('BaseModel', () => {
 
@@ -203,6 +204,24 @@ describe('BaseModel', () => {
         nonObjects.forEach((nonObject: any) => expect(baseModel['_isObject'](nonObject)).toBeFalsy());
 
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
+    });
+
+    it('should test IConvertOption', () => {
+        const json: any = {
+            "seed": "abc",
+            "results": "3",
+            "page": "1",
+            "version": "1.1"
+        };
+
+        const model = new ConversionInfoModel(json);
+
+        expect(model.toJSON()).toEqual({
+            seed: 'abc',
+            results: true,
+            page: 1,
+            version: 1.1
+        });
     });
 
 });
