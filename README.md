@@ -161,6 +161,8 @@ See [example code](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb920
 
 ## Release History
 
+ * 2018-04-20 v1.4.0 Add the ability to convert property values to ConversionTypeEnum.Float, ConversionTypeEnum.Number or ConversionTypeEnum.Boolean with IConvertOption.
+ 
  * 2018-04-15 v1.3.2 Make the clone method a Generic TypeScript type. ```model.clone<SomeModel>();```
  
  * 2018-04-10 v1.3.1 Update to previous version (v1.3.0) to allow other types not just objects. Now will add number, string, etc.

@@ -1,11 +1,12 @@
-import { IBaseModel } from './IBaseModel';
-import { IBaseModelOptions } from './IBaseModelOptions';
 import { BaseObject } from './BaseObject';
+import { IBaseModelOptions } from './IBaseModelOptions';
+import { IBaseModel } from './IBaseModel';
+import { IConvertOption } from './IConvertOption';
 export declare class BaseModel extends BaseObject implements IBaseModel {
     static readonly IS_BASE_MODEL: boolean;
     protected sjsOptions: IBaseModelOptions;
     constructor(opts?: IBaseModelOptions);
-    update(data?: any): any;
+    update(data?: any, convertOptions?: IConvertOption): any;
     toJSON(): any;
     toJSONString(): string;
     fromJSON(json: string): any;
