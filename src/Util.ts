@@ -1,3 +1,6 @@
+import {ConversionTypeEnum} from './ConversionTypeEnum';
+import {IConvertOption} from './IConvertOption';
+
 /**
  * A Utility class that has several static methods to assist in development.
  *
@@ -122,6 +125,59 @@ export class Util {
         }
 
         throw new Error(`Unable to copy. ${src} isn't supported.`);
+    }
+
+    /**
+     * Converts a string or number to a boolean.
+     * @example
+     *      Util.toBoolean("FALSE");
+     *      // false
+     *
+     *      Util.toBoolean("off");
+     *      // false
+     *
+     *      Util.toBoolean(0);
+     *      // false
+     *
+     *      Util.toBoolean(undefined);
+     *      // false
+     */
+    public static toBoolean(value: string | number | boolean): boolean {
+        const normalized: string | number | boolean = (typeof value === 'string')
+            ? value.toLowerCase()
+            : value;
+
+        return !(normalized == null || normalized <= 0 || normalized === 'false' || normalized === 'off');
+    }
+
+    public static convertDataUsingOptions(data: object, convertOptions: IConvertOption): void {
+        Object
+            .keys(convertOptions)
+            .forEach((propertyName: string) => {
+                if (data.hasOwnProperty(propertyName)) {
+                    const propertyData: number | string = (data as any)[propertyName];
+                    const convertType: ConversionTypeEnum = convertOptions[propertyName];
+
+                    (data as any)[propertyName] = Util.convertDataToType(propertyData, convertType);
+                }
+            });
+    }
+
+    public static convertDataToType(propertyData: string | number, convertType: ConversionTypeEnum): string | number | boolean {
+        switch (convertType) {
+            case ConversionTypeEnum.Boolean:
+                return Util.toBoolean(propertyData);
+            case ConversionTypeEnum.Float:
+                return (propertyData === null)
+                    ? propertyData
+                    : parseFloat(propertyData as string);
+            case ConversionTypeEnum.Number:
+                return (propertyData === null)
+                    ? propertyData
+                    : parseInt(propertyData as string, 10);
+            default:
+                return propertyData;
+        }
     }
 
 }

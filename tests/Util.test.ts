@@ -1,4 +1,5 @@
 import {Util} from '../src/Util';
+import {ConversionTypeEnum, IConvertOption} from '../src';
 
 describe('Util', () => {
 
@@ -56,6 +57,66 @@ describe('Util', () => {
         });
 
         expect(expected).toEqual(actual);
+    });
+
+    it('Util.toBoolean()', () => {
+        expect(Util.toBoolean(1)).toBeTruthy();
+        expect(Util.toBoolean('1')).toBeTruthy();
+        expect(Util.toBoolean(true)).toBeTruthy();
+        expect(Util.toBoolean('true')).toBeTruthy();
+        expect(Util.toBoolean('text')).toBeTruthy();
+        expect(Util.toBoolean('null')).toBeTruthy();
+        expect(Util.toBoolean('undefined')).toBeTruthy();
+
+        expect(Util.toBoolean('FALSE')).toBeFalsy();
+        expect(Util.toBoolean('false')).toBeFalsy();
+        expect(Util.toBoolean('off')).toBeFalsy();
+        expect(Util.toBoolean(0)).toBeFalsy();
+        expect(Util.toBoolean('0')).toBeFalsy();
+        expect(Util.toBoolean(null)).toBeFalsy();
+        expect(Util.toBoolean(undefined)).toBeFalsy();
+        expect(Util.toBoolean(false)).toBeFalsy();
+    });
+
+    it('Util.convertDataToType()', () => {
+        expect(Util.convertDataToType(1.02323, ConversionTypeEnum.Number)).toEqual(1);
+        expect(Util.convertDataToType(1, ConversionTypeEnum.Number)).toEqual(1);
+        expect(Util.convertDataToType('1', ConversionTypeEnum.Number)).toEqual(1);
+
+        expect(Util.convertDataToType('1', ConversionTypeEnum.Boolean)).toEqual(true);
+        expect(Util.convertDataToType(0, ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToType('0', ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToType('FALSE', ConversionTypeEnum.Boolean)).toEqual(false);
+
+        expect(Util.convertDataToType('01.02', ConversionTypeEnum.Float)).toEqual(1.02);
+        expect(Util.convertDataToType(1, ConversionTypeEnum.Float)).toEqual(1);
+        expect(Util.convertDataToType(2222.22222222, ConversionTypeEnum.Float)).toEqual(2222.22222222);
+    });
+
+    it('Util.convertDataUsingOptions()', () => {
+        let data: object = {
+            stringToFloat: '23.345',
+            stringToNumber: '23.345',
+            stringToFalse: '0',
+            stringToTrue: '1',
+            noChange: '8',
+        };
+        const options: IConvertOption = {
+            stringToFloat: ConversionTypeEnum.Float,
+            stringToNumber: ConversionTypeEnum.Number,
+            stringToFalse: ConversionTypeEnum.Boolean,
+            stringToTrue: ConversionTypeEnum.Boolean,
+        };
+
+        Util.convertDataUsingOptions(data, options);
+
+        expect(data).toEqual({
+            stringToFloat: 23.345,
+            stringToNumber: 23,
+            stringToFalse: false,
+            stringToTrue: true,
+            noChange: '8',
+        });
     });
 
 });
