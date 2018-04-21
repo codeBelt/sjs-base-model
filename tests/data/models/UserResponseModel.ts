@@ -13,13 +13,13 @@ export class UserResponseModel extends BaseModel {
     public zeroToArray: number[] = [];
     public falseToArray: boolean[] = [];
 
-    constructor(data: any = {}, opts: IBaseModelOptions = {}) {
+    constructor(data: Partial<UserResponseModel> = {}, opts: IBaseModelOptions = {}) {
         super(opts);
 
         this.update(data);
     }
 
-    public update(data: any): void {
+    public update(data: Partial<UserResponseModel>): void {
         super.update(data);
     }
 

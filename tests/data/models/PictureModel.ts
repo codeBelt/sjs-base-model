@@ -7,13 +7,13 @@ export class PictureModel extends BaseModel {
     public medium: string = '';
     public thumbnail: string = '';
 
-    constructor(data: any = {}, opts: IBaseModelOptions = {}) {
+    constructor(data: Partial<PictureModel> = {}, opts: IBaseModelOptions = {}) {
         super(opts);
 
         this.update(data);
     }
 
-    public update(data: any): void {
+    public update(data: Partial<PictureModel>): void {
         super.update(data);
     }
 

@@ -8,13 +8,13 @@ export class InfoModel extends BaseModel {
     public page: number = null;
     public version: string = '';
 
-    constructor(data: any = {}, opts: IBaseModelOptions = {}) {
+    constructor(data: Partial<InfoModel> = {}, opts: IBaseModelOptions = {}) {
         super(opts);
 
         this.update(data);
     }
 
-    public update(data: any): void {
+    public update(data: Partial<InfoModel>): void {
         super.update(data);
     }
 

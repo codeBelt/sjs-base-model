@@ -11,13 +11,13 @@ export class UserModel extends BaseModel {
     public email: string = '';
     public nat: string = '';
 
-    constructor(data: any = {}, opts: IBaseModelOptions = {}) {
+    constructor(data: Partial<UserModel> = {}, opts: IBaseModelOptions = {}) {
         super(opts);
 
         this.update(data);
     }
 
-    public update(data: any): void {
+    public update(data: Partial<UserModel>): void {
         super.update(data);
     }
 

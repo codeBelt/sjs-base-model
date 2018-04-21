@@ -7,13 +7,13 @@ export class NameModel extends BaseModel {
     public first: string = '';
     public last: string = '';
 
-    constructor(data: any = {}, opts: IBaseModelOptions = {}) {
+    constructor(data: Partial<NameModel> = {}, opts: IBaseModelOptions = {}) {
         super(opts);
 
         this.update(data);
     }
 
-    public update(data: any): void {
+    public update(data: Partial<NameModel>): void {
         super.update(data);
     }
 
