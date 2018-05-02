@@ -29,7 +29,7 @@ This is how you should extend `sjs-base-model`
 ```javascript
 import {BaseModel} from 'sjs-base-model';
     
-export class CarModel extends BaseModel {
+export default class CarModel extends BaseModel {
     
     make = '';
     model = '';
@@ -37,7 +37,7 @@ export class CarModel extends BaseModel {
     feature = FeatureModel;
     colors = [ColorModel];
     
-    constructor(data = {}) {
+    constructor(data) {
         super();
         
         this.update(data);
@@ -55,7 +55,7 @@ Model Explained
 ```javascript
 import {BaseModel} from 'sjs-base-model';
     
-export class CarModel extends BaseModel {
+export default class CarModel extends BaseModel {
     
     // The class properties must match the data properties being passed in. Otherwise they will be ignored
     make = '';
@@ -70,7 +70,7 @@ export class CarModel extends BaseModel {
     // else the property will be set to an empty array
     colors = [ColorModel];
     
-    constructor(data = {}) {
+    constructor(data) {
         super();
         
         this.update(data);
@@ -126,7 +126,7 @@ You will need to do `as any` when assigning the function model to the type of mo
 ```typescript
 import {BaseModel} from 'sjs-base-model';
     
-export class CarModel extends BaseModel {
+export default class CarModel extends BaseModel {
     
     make: string = '';
     model: string = '';
@@ -136,13 +136,13 @@ export class CarModel extends BaseModel {
     
     colors: ColorModel[] = [ColorModel as any];
     
-    constructor(data: any = {}) {
+    constructor(data: Partial<CarModel>) {
         super();
     
         this.update(data);
     }
     
-    update(data: any): void {
+    update(data: Partial<CarModel>): void {
         super.update(data);
         
         this.year = data.YeAr;
