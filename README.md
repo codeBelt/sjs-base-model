@@ -92,6 +92,83 @@ export default class CarModel extends BaseModel {
 }
 ```
 
+## BaseModel Conversion Types
+
+`BaseModel` has the abiltiy to convert data when passed to the `update` method. For example if a string number was passed in `"2"` and you wanted to be an actual number `2` then you can give it the property name and associate it with the correct `ConversionTypeEnum`. Currently it only supports `number`, `float` and `boolean`. See below for an example:
+
+```javascript
+const json = {
+    "seed": "abc",
+    "results": "3", 	// We want this to be a boolean
+    "page": "1", 		// We want this to be a number
+    "version": "1.1" 	// We want this to be a float number
+};
+
+const model = new SomeModel(json);
+```     
+
+JavaScript Version
+
+```javascript
+import {BaseModel, ConversionTypeEnum} from 'sjs-base-model';
+
+export default class SomeModel extends BaseModel {
+
+    seed = '';
+    results = false; // Was a string but converted into a boolean by IConversionOption
+    page = null; // Was a string but converted into a number by IConversionOption
+    version = null; // Was a string but converted into a float by IConversionOption
+
+    constructor(data) {
+        super();
+
+        this.update(data);
+    }
+
+    update(data) {
+        const conversionOptions = {
+            results: ConversionTypeEnum.Boolean,
+            page: ConversionTypeEnum.Number,
+            version: ConversionTypeEnum.Float,
+        };
+
+        super.update(data, conversionOptions);
+    }
+
+}
+``` 
+
+TypeScript Version
+
+```javascript
+import {BaseModel, ConversionTypeEnum, IConversionOption} from 'sjs-base-model';
+
+export default class SomeModel extends BaseModel {
+
+    public seed: string = '';
+    public results: boolean = false; // Was a string but converted into a boolean by IConversionOption
+    public page: number = null; // Was a string but converted into a number by IConversionOption
+    public version: number = null; // Was a string but converted into a float by IConversionOption
+
+    constructor(data: Partial<SomeModel>) {
+        super();
+
+        this.update(data);
+    }
+
+    public update(data: Partial<SomeModel>): void {
+        const conversionOptions: IConversionOption = {
+            results: ConversionTypeEnum.Boolean,
+            page: ConversionTypeEnum.Number,
+            version: ConversionTypeEnum.Float,
+        };
+
+        super.update(data, conversionOptions);
+    }
+
+}
+```  
+
 ## BaseModel Properties
 There are a couple of properties on the `BaseModel`. If you call the `.toJSON();` method on the model it will remove all `sjs-base-model` specific properties.
 
@@ -110,25 +187,29 @@ TODO
 ## BaseModel Methods
 
 #### update(json)
-Example how to use the `update` method which will only change the property value(s) that were passed in
+Example how to use the `update` method which will only change the property value(s) that were passed in.
+
 ```javascript
 carModel.update({year: 2015, feature: {abs: true}});
 ```
 
 #### toJSON()
 Converts the BaseModel data into a JSON object and deletes the sjsId property.
+
 ```javascript
 const json = carModel.toJSON();
 ```
 
 #### toJSONString()
 Converts a BaseModel to a JSON string,
+
 ```javascript
 const jsonStr = carModel.toJSONString();
 ```
 
 #### fromJSON(jsonString)
 Converts the string json data into an Object and calls the update method with the converted Object.
+
 ```javascript
  const str = '{"make":"Tesla","model":"Model S","year":2014}'
  const carModel = new CarModel();
@@ -137,6 +218,7 @@ Converts the string json data into an Object and calls the update method with th
 
 #### clone()
 Creates a clone/copy of the BaseModel.
+
 ```javascript
 const clone = carModel.clone();
 ```
@@ -181,6 +263,8 @@ See [example code](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb920
 
 
 ## Release History
+
+ * 2018-05-09 v1.5.0 Rename IConvertOption to IConversionOption to match with ConversionTypeEnum
 
  * 2018-04-20 v1.4.0 Add the ability to convert property values to ConversionTypeEnum.Float, ConversionTypeEnum.Number or ConversionTypeEnum.Boolean with IConvertOption.
  
