@@ -22,10 +22,13 @@ const apiData = {
         colors: [{id: 'red', name: 'Red'}, {id: 'white', name: 'White'}]
 }
 ```
+
 ```javascript
 const carModel = new CarModel(apiData);
 ```
+
 This is how you should extend `sjs-base-model`
+
 ```javascript
 import {BaseModel} from 'sjs-base-model';
     
@@ -51,7 +54,9 @@ export default class CarModel extends BaseModel {
     
 }
 ```
+
 Model Explained 
+
 ```javascript
 import {BaseModel} from 'sjs-base-model';
     
@@ -86,6 +91,21 @@ export default class CarModel extends BaseModel {
     
 }
 ```
+
+## BaseModel Properties
+There are a couple of properties on the `BaseModel`. If you call the `.toJSON();` method on the model it will remove all `sjs-base-model` specific properties.
+
+#### sjsId
+Each `sjs-base-model` that is created has a unique model id. You can access it by the `sjsId` property.
+
+```javascript
+const carModel = new CarModel();
+
+carModel.sjsId; // unique model id
+```
+
+#### sjsOptions
+TODO
 
 ## BaseModel Methods
 
@@ -123,6 +143,7 @@ const clone = carModel.clone();
 
 ## TypeScript Usage
 You will need to do `as any` when assigning the function model to the type of model so the compiler doesn't complain. Notice `FeatureModel as any;` and `[ColorModel as any];`
+
 ```typescript
 import {BaseModel} from 'sjs-base-model';
     
