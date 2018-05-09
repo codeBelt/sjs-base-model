@@ -93,7 +93,7 @@ export default class CarModel extends BaseModel {
 ```
 
 ## BaseModel Properties
-There a couple of properties on the `BaseModel`. If you call the `.toJSON();` method on the model it will remove all `sjs-base-model` specific properties.
+There are a couple of properties on the `BaseModel`. If you call the `.toJSON();` method on the model it will remove all `sjs-base-model` specific properties.
 
 #### sjsId
 Each `sjs-base-model` that is created has a unique model id. You can access it by the `sjsId` property.
