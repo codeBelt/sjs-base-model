@@ -1,5 +1,5 @@
 import {Util} from '../src/Util';
-import {ConversionTypeEnum, IConvertOption} from '../src';
+import {ConversionTypeEnum, IConversionOption} from '../src';
 
 describe('Util', () => {
 
@@ -101,14 +101,14 @@ describe('Util', () => {
             stringToTrue: '1',
             noChange: '8',
         };
-        const options: IConvertOption = {
+        const conversionOptions: IConversionOption = {
             stringToFloat: ConversionTypeEnum.Float,
             stringToNumber: ConversionTypeEnum.Number,
             stringToFalse: ConversionTypeEnum.Boolean,
             stringToTrue: ConversionTypeEnum.Boolean,
         };
 
-        Util.convertDataUsingOptions(data, options);
+        Util.convertDataUsingOptions(data, conversionOptions);
 
         expect(data).toEqual({
             stringToFloat: 23.345,

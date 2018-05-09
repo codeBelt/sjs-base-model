@@ -206,7 +206,7 @@ describe('BaseModel', () => {
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
     });
 
-    it('should test IConvertOption', () => {
+    it('should test IConversionOption', () => {
         const json: any = {
             "seed": "abc",
             "results": "3",

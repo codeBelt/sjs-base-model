@@ -1,7 +1,7 @@
 import {BaseObject} from './BaseObject';
 import {IBaseModelOptions} from './IBaseModelOptions';
 import {IBaseModel} from './IBaseModel';
-import {IConvertOption} from './IConvertOption';
+import {IConversionOption} from './IConversionOption';
 import {Util} from './Util';
 
 /**
@@ -101,7 +101,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
      *
      * @method update
      * @param [data={}] {any}
-     * @param [convertOptions={}] {IConvertOption}
+     * @param [conversionOptions={}] {IConversionOption}
      * @public
      * @example
      *     // Example of updating some of the data:
@@ -111,7 +111,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
      *     carModel.year = 2015;
      *     carModel.allWheel = false;
      */
-    public update(data: any = {}, convertOptions: IConvertOption = {}): any {
+    public update(data: any = {}, conversionOptions: IConversionOption = {}): any {
         const dataToUse: {[propertyName: string]: any} = this._isObject(data, true)
             ? data
             : {};
@@ -128,7 +128,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
                 }
             });
 
-        Util.convertDataUsingOptions(this, convertOptions);
+        Util.convertDataUsingOptions(this, conversionOptions);
 
         return this;
     }
