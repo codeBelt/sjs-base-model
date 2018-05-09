@@ -1,5 +1,5 @@
 import {ConversionTypeEnum} from './ConversionTypeEnum';
-import {IConvertOption} from './IConvertOption';
+import {IConversionOption} from './IConversionOption';
 
 /**
  * A Utility class that has several static methods to assist in development.
@@ -150,21 +150,21 @@ export class Util {
         return !(normalized == null || normalized <= 0 || normalized === 'false' || normalized === 'off');
     }
 
-    public static convertDataUsingOptions(data: object, convertOptions: IConvertOption): void {
+    public static convertDataUsingOptions(data: object, conversionOptions: IConversionOption): void {
         Object
-            .keys(convertOptions)
+            .keys(conversionOptions)
             .forEach((propertyName: string) => {
                 if (data.hasOwnProperty(propertyName)) {
                     const propertyData: number | string = (data as any)[propertyName];
-                    const convertType: ConversionTypeEnum = convertOptions[propertyName];
+                    const conversionType: ConversionTypeEnum = conversionOptions[propertyName];
 
-                    (data as any)[propertyName] = Util.convertDataToType(propertyData, convertType);
+                    (data as any)[propertyName] = Util.convertDataToType(propertyData, conversionType);
                 }
             });
     }
 
-    public static convertDataToType(propertyData: string | number, convertType: ConversionTypeEnum): string | number | boolean {
-        switch (convertType) {
+    public static convertDataToType(propertyData: string | number, conversionType: ConversionTypeEnum): string | number | boolean {
+        switch (conversionType) {
             case ConversionTypeEnum.Boolean:
                 return Util.toBoolean(propertyData);
             case ConversionTypeEnum.Float:

@@ -1,12 +1,12 @@
 import {IBaseModelOptions} from '../../../src/IBaseModelOptions';
-import {BaseModel, ConversionTypeEnum, IConvertOption} from '../../../src';
+import {BaseModel, ConversionTypeEnum, IConversionOption} from '../../../src';
 
 export class ConversionInfoModel extends BaseModel {
 
     public seed: string = '';
-    public results: boolean = false; // Was a string but converted into a boolean by IConvertOption
-    public page: number = null; // Was a string but converted into a number by IConvertOption
-    public version: number = null; // Was a string but converted into a float by IConvertOption
+    public results: boolean = false; // Was a string but converted into a boolean by IConversionOption
+    public page: number = null; // Was a string but converted into a number by IConversionOption
+    public version: number = null; // Was a string but converted into a float by IConversionOption
 
     constructor(data: Partial<ConversionInfoModel> = {}, opts: IBaseModelOptions = {}) {
         super(opts);
@@ -15,13 +15,13 @@ export class ConversionInfoModel extends BaseModel {
     }
 
     public update(data: Partial<ConversionInfoModel>): void {
-        const options: IConvertOption = {
+        const conversionOptions: IConversionOption = {
             results: ConversionTypeEnum.Boolean,
             page: ConversionTypeEnum.Number,
             version: ConversionTypeEnum.Float,
         };
 
-        super.update(data, options);
+        super.update(data, conversionOptions);
     }
 
 }

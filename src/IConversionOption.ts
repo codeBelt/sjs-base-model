@@ -1,5 +1,5 @@
 import {ConversionTypeEnum} from './ConversionTypeEnum';
 
-export interface IConvertOption {
+export interface IConversionOption {
     [propertyName: string]: ConversionTypeEnum;
 }
