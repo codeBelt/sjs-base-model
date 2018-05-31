@@ -63,6 +63,7 @@ import {BaseModel} from 'sjs-base-model';
 export default class CarModel extends BaseModel {
     
     // The class properties must match the data properties being passed in. Otherwise they will be ignored
+    // Check out the PropertyNormalizerModel example below on how to normalize you data to match the properties.
     make = '';
     model = '';
     year = null;
