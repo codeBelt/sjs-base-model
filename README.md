@@ -63,7 +63,6 @@ import {BaseModel} from 'sjs-base-model';
 export default class CarModel extends BaseModel {
     
     // The class properties must match the data properties being passed in. Otherwise they will be ignored
-    // Check out the PropertyNormalizerModel example below on how to normalize you data to match the properties.
     make = '';
     model = '';
     year = null;
@@ -88,6 +87,9 @@ export default class CarModel extends BaseModel {
         // If the data doesn't match the property name
         // You can set the value(s) manually after the update super method has been called.
         this.year = data.YeAr;
+        
+        // Check out PropertyNormalizerModel example below on how to normalize you data to match the properties
+        // so you don't need to do it manually.
     }
     
 }
