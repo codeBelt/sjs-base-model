@@ -88,8 +88,8 @@ export default class CarModel extends BaseModel {
         // You can set the value(s) manually after the update super method has been called.
         this.year = data.YeAr;
         
-        // Check out PropertyNormalizerModel example below on how to normalize you data to match the properties
-        // so you don't need to do it manually.
+        // Check out PropertyNormalizerModel example below on how to normalize you data to 
+        // match the properties so you don't need to do it manually.
     }
     
 }
@@ -102,9 +102,9 @@ export default class CarModel extends BaseModel {
 ```javascript
 const json = {
     "seed": "abc",
-    "results": "3", 	// We want this to be a boolean
-    "page": "1", 		// We want this to be a number
-    "version": "1.1" 	// We want this to be a float number
+    "results": "3",   // We want this to be a boolean
+    "page": "1",      // We want this to be a number
+    "version": "1.1"  // We want this to be a float number
 };
 
 const model = new SomeModel(json);
