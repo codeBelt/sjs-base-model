@@ -118,9 +118,9 @@ import {BaseModel, ConversionTypeEnum} from 'sjs-base-model';
 export default class SomeModel extends BaseModel {
 
     seed = '';
-    results = false; // Was a string but converted into a boolean by IConversionOption
-    page = null; // Was a string but converted into a number by IConversionOption
-    version = null; // Was a string but converted into a float by IConversionOption
+    results = false; // Previously string; converted to boolean by IConversionOption
+    page = null; // Previously string; converted to number by IConversionOption
+    version = null; // Previously string; converted to float by IConversionOption
 
     constructor(data) {
         super();
@@ -149,9 +149,9 @@ import {BaseModel, ConversionTypeEnum, IConversionOption} from 'sjs-base-model';
 export default class SomeModel extends BaseModel {
 
     public seed: string = '';
-    public results: boolean = false; // Was a string but converted into a boolean by IConversionOption
-    public page: number = null; // Was a string but converted into a number by IConversionOption
-    public version: number = null; // Was a string but converted into a float by IConversionOption
+    public results: boolean = false; // Previously string; converted to boolean by IConversionOption
+    public page: number = null; // Previously string; converted to number by IConversionOption
+    public version: number = null; // Previously string; converted to float by IConversionOption
 
     constructor(data: Partial<SomeModel>) {
         super();
