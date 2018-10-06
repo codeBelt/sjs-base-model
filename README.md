@@ -88,7 +88,7 @@ export default class CarModel extends BaseModel {
         // You can set the value(s) manually after the update super method has been called.
         this.year = data.YeAr;
         
-        // Check out PropertyNormalizerModel example below on how to normalize you data to 
+        // Check out PropertyNormalizerUtility example below on how to normalize you data to 
         // match the properties so you don't need to do it manually.
     }
     
@@ -97,7 +97,7 @@ export default class CarModel extends BaseModel {
 
 ## BaseModel Conversion Types
 
-`BaseModel` has the abiltiy to convert data when passed to the `update` method. For example if a string number was passed in `"2"` and you wanted to be an actual number `2` then you can give it the property name and associate it with the correct `ConversionTypeEnum`. Currently it only supports `number`, `float` and `boolean`. See below for an example:
+`BaseModel` has the ability to convert data when passed to the `update` method. For example if a string number was passed in `"2"` and you wanted to be an actual number `2` then you can give it the property name and associate it with the correct `ConversionTypeEnum`. Currently it only supports `number`, `float` and `boolean`. See below for an example:
 
 ```javascript
 const json = {
@@ -260,9 +260,7 @@ export default class CarModel extends BaseModel {
 ## Real World
 I like to keep my data consistent in my applications. So I like everything to be `camelCase`. It's hard when dealing with different data api's. Each one can return a differnt case type (`kebab-case`, `snake_case`, `PascalCase`, `camelCase`, `UPPER_CASE` and this one `@propertyName`). 
 
-What you can do is create a class called [PropertyNormalizerModel](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba#file-propertynormalizermodel-ts) that extends `sjs-base-mode` that normalizes the data coming in. Then all your other models extends PropertyNormalizerModel.
-
-See [example code](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba) for ideas.
+What you can do is create a utility class that normalizes the data coming in. See the [PropertyNormalizerUtility](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba) example for ideas.
 
 
 ## Release History
