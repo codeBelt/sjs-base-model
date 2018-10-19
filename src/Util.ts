@@ -153,12 +153,14 @@ export class Util {
     public static convertDataUsingOptions(data: object, conversionOptions: IConversionOption): void {
         Object
             .keys(conversionOptions)
-            .forEach((propertyName: string) => {
-                if (data.hasOwnProperty(propertyName)) {
-                    const propertyData: number | string = (data as any)[propertyName];
-                    const conversionType: ConversionTypeEnum = conversionOptions[propertyName];
+            .forEach((conversionPropertyName: string) => {
+                if (data.hasOwnProperty(conversionPropertyName)) {
+                    const propertyData: number | string = (data as any)[conversionPropertyName];
+                    const conversionType: ConversionTypeEnum = conversionOptions[conversionPropertyName];
 
-                    (data as any)[propertyName] = Util.convertDataToType(propertyData, conversionType);
+                    (data as any)[conversionPropertyName] = Util.convertDataToType(propertyData, conversionType);
+                } else {
+                    throw new SyntaxError(`Conversion property name "${conversionPropertyName}" does not match a property name on the model.`);
                 }
             });
     }

@@ -93,30 +93,45 @@ describe('Util', () => {
         expect(Util.convertDataToType(2222.22222222, ConversionTypeEnum.Float)).toEqual(2222.22222222);
     });
 
-    it('Util.convertDataUsingOptions()', () => {
-        let data: object = {
-            stringToFloat: '23.345',
-            stringToNumber: '23.345',
-            stringToFalse: '0',
-            stringToTrue: '1',
-            noChange: '8',
-        };
-        const conversionOptions: IConversionOption = {
-            stringToFloat: ConversionTypeEnum.Float,
-            stringToNumber: ConversionTypeEnum.Number,
-            stringToFalse: ConversionTypeEnum.Boolean,
-            stringToTrue: ConversionTypeEnum.Boolean,
-        };
+    describe('Util.convertDataUsingOptions()', () => {
+        it('Should convert data types', () => {
+            let data: object = {
+                stringToFloat: '23.345',
+                stringToNumber: '23.345',
+                stringToFalse: '0',
+                stringToTrue: '1',
+                noChange: '8',
+            };
+            const conversionOptions: IConversionOption = {
+                stringToFloat: ConversionTypeEnum.Float,
+                stringToNumber: ConversionTypeEnum.Number,
+                stringToFalse: ConversionTypeEnum.Boolean,
+                stringToTrue: ConversionTypeEnum.Boolean,
+            };
 
-        Util.convertDataUsingOptions(data, conversionOptions);
+            Util.convertDataUsingOptions(data, conversionOptions);
 
-        expect(data).toEqual({
-            stringToFloat: 23.345,
-            stringToNumber: 23,
-            stringToFalse: false,
-            stringToTrue: true,
-            noChange: '8',
+            expect(data).toEqual({
+                stringToFloat: 23.345,
+                stringToNumber: 23,
+                stringToFalse: false,
+                stringToTrue: true,
+                noChange: '8',
+            });
         });
-    });
+
+        it('should throw error on non existent key', () => {
+            const json: any = {
+                something: '',
+            };
+            const conversionOptions: IConversionOption = {
+                nonExistentKey: ConversionTypeEnum.Float,
+            };
+
+            expect(() => {
+                Util.convertDataUsingOptions(json, conversionOptions)
+            }).toThrow(SyntaxError);
+        });
+    })
 
 });
