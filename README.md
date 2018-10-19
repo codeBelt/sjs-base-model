@@ -172,7 +172,6 @@ export default class SomeModel extends BaseModel {
 }
 ```  
 
-
 ## BaseModel Properties
 There are a couple of properties on the `BaseModel`. If you call the `.toJSON();` method on the model it will remove all `sjs-base-model` specific properties.
 
@@ -186,7 +185,6 @@ carModel.sjsId; // unique model id
 ```
 
 #### sjsOptions
-
 Each `sjs-base-model` has an object on that keeps track of options you can set. You can set these options by passing an object to the `super` method of the class constructor. Currently there is only the option `expand` which accepts a `boolean`. See the [BaseModel Expand Scaffolding](##masemodel-expand-scaffolding) section to learn more. 
 
 ```javascript
