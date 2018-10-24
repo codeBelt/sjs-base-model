@@ -185,7 +185,15 @@ carModel.sjsId; // unique model id
 ```
 
 #### sjsOptions
-TODO
+Each `sjs-base-model` has an object on that keeps track of options you can set. You can set these options by passing an object to the `super` method of the class constructor. Currently there is only the option `expand` which accepts a `boolean`. See the [BaseModel Expand Scaffolding](##masemodel-expand-scaffolding) section to learn more. 
+
+```javascript
+constructor(data) {
+    super({expand: true});
+    
+    this.update(data);
+}
+```
 
 ## BaseModel Methods
 
@@ -227,7 +235,7 @@ const clone = carModel.clone();
 ```
 
 ## TypeScript Usage
-You will need to do `as any` when assigning the function model to the type of model so the compiler doesn't complain. Notice `FeatureModel as any;` and `[ColorModel as any];`
+You will need to use `as any` when assigning the function model to the type of model so the compiler doesn't complain. Notice `FeatureModel as any;` and `[ColorModel as any];`
 
 ```typescript
 import {BaseModel} from 'sjs-base-model';
@@ -262,6 +270,34 @@ I like to keep my data consistent in my applications. So I like everything to be
 
 What you can do is create a utility class that normalizes the data coming in. See the [PropertyNormalizerUtility](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba) example for ideas.
 
+## BaseModel Expand Scaffolding
+If you pass `{expand: true}` into the `super` method of the class constructor. It will create empty models for you but only if they extend `BaseModel`. If you look at the example below. Notice the `feature` property. If no data or `null` was passed in for `feature` it will instantiate the `FeatureModel` and you will end up with an empty model. Basically you always have a `FeatureModel` assigned to `feature`. This can be useful if needed.
+
+```javascript
+import {BaseModel} from 'sjs-base-model';
+    
+export default class CarModel extends BaseModel {
+    
+    make = '';
+    model = '';
+    year = null;
+    feature = FeatureModel; // This will be an empty FeatureModel if no data is passed in
+    colors = [ColorModel]; // This will be an empty array
+    
+    constructor(data) {
+        super({expand: true}); // Notice sjsOptions
+        
+        this.update(data);
+    }
+    
+    update(data) {
+        super.update(data);
+        
+        this.year = data.YeAr;
+    }
+    
+}
+```
 
 ## Release History
 
