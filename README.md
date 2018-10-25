@@ -185,7 +185,7 @@ carModel.sjsId; // unique model id
 ```
 
 #### sjsOptions
-Each `sjs-base-model` has an object on that keeps track of options you can set. You can set these options by passing an object to the `super` method of the class constructor. Currently there is only the option `expand` which accepts a `boolean`. See the [BaseModel Expand Scaffolding](##masemodel-expand-scaffolding) section to learn more. 
+Each `sjs-base-model` has an object on it that keeps track of options you can set. You can set these options by passing an object to the `super` method of the class constructor. Currently there is only the option `expand` which accepts a `boolean`. See the [BaseModel Expand Scaffolding](##masemodel-expand-scaffolding) section to learn more. 
 
 ```javascript
 constructor(data) {
@@ -301,6 +301,8 @@ export default class CarModel extends BaseModel {
 
 ## Release History
 
+ * 2018-10-24 v1.5.1 Throw error if conversion property name doesn't match any properties on the model. Add ConversionTypeEnum.String IConvertOption.
+ 
  * 2018-05-09 v1.5.0 Rename IConvertOption to IConversionOption to match with ConversionTypeEnum
 
  * 2018-04-20 v1.4.0 Add the ability to convert property values to ConversionTypeEnum.Float, ConversionTypeEnum.Number or ConversionTypeEnum.Boolean with IConvertOption.
