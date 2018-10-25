@@ -97,7 +97,7 @@ export default class CarModel extends BaseModel {
 
 ## BaseModel Conversion Types
 
-`BaseModel` has the ability to convert data when passed to the `update` method. For example if a string number was passed in `"2"` and you wanted to be an actual number `2` then you can give it the property name and associate it with the correct `ConversionTypeEnum`. Currently it only supports `number`, `float` and `boolean`. See below for an example:
+`BaseModel` has the ability to convert data when passed to the `update` method. For example if a string number was passed in `"2"` and you wanted to be an actual number `2` then you can give it the property name and associate it with the correct `ConversionTypeEnum`. Currently it only supports `number`, `float`, `string` and `boolean`. See below for an example:
 
 ```javascript
 const json = {
