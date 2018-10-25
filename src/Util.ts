@@ -155,17 +155,17 @@ export class Util {
             .keys(conversionOptions)
             .forEach((conversionPropertyName: string) => {
                 if (data.hasOwnProperty(conversionPropertyName)) {
-                    const propertyData: number | string = (data as any)[conversionPropertyName];
+                    const propertyData: number | string = data[conversionPropertyName];
                     const conversionType: ConversionTypeEnum = conversionOptions[conversionPropertyName];
 
-                    (data as any)[conversionPropertyName] = Util.convertDataToType(propertyData, conversionType);
+                    data[conversionPropertyName] = Util.convertDataToType(propertyData, conversionType);
                 } else {
                     throw new SyntaxError(`Conversion property name "${conversionPropertyName}" does not match a property name on the model.`);
                 }
             });
     }
 
-    public static convertDataToType(propertyData: string | number, conversionType: ConversionTypeEnum): string | number | boolean {
+    public static convertDataToType(propertyData: string | number | boolean, conversionType: ConversionTypeEnum): string | number | boolean {
         switch (conversionType) {
             case ConversionTypeEnum.Boolean:
                 return Util.toBoolean(propertyData);
@@ -177,6 +177,10 @@ export class Util {
                 return (propertyData === null)
                     ? propertyData
                     : parseInt(propertyData as string, 10);
+            case ConversionTypeEnum.String:
+                return (propertyData === null)
+                    ? propertyData
+                    : String(propertyData);
             default:
                 return propertyData;
         }

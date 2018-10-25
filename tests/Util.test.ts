@@ -82,15 +82,23 @@ describe('Util', () => {
         expect(Util.convertDataToType(1.02323, ConversionTypeEnum.Number)).toEqual(1);
         expect(Util.convertDataToType(1, ConversionTypeEnum.Number)).toEqual(1);
         expect(Util.convertDataToType('1', ConversionTypeEnum.Number)).toEqual(1);
+        expect(Util.convertDataToType(null, ConversionTypeEnum.Number)).toEqual(null);
 
         expect(Util.convertDataToType('1', ConversionTypeEnum.Boolean)).toEqual(true);
         expect(Util.convertDataToType(0, ConversionTypeEnum.Boolean)).toEqual(false);
         expect(Util.convertDataToType('0', ConversionTypeEnum.Boolean)).toEqual(false);
         expect(Util.convertDataToType('FALSE', ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToType('', ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToType(null, ConversionTypeEnum.Boolean)).toEqual(false);
 
         expect(Util.convertDataToType('01.02', ConversionTypeEnum.Float)).toEqual(1.02);
         expect(Util.convertDataToType(1, ConversionTypeEnum.Float)).toEqual(1);
         expect(Util.convertDataToType(2222.22222222, ConversionTypeEnum.Float)).toEqual(2222.22222222);
+        expect(Util.convertDataToType(null, ConversionTypeEnum.Float)).toEqual(null);
+
+        expect(Util.convertDataToType(1.11, ConversionTypeEnum.String)).toEqual('1.11');
+        expect(Util.convertDataToType(false, ConversionTypeEnum.String)).toEqual('false');
+        expect(Util.convertDataToType(null, ConversionTypeEnum.String)).toEqual(null);
     });
 
     describe('Util.convertDataUsingOptions()', () => {
@@ -101,12 +109,14 @@ describe('Util', () => {
                 stringToFalse: '0',
                 stringToTrue: '1',
                 noChange: '8',
+                numberToString: 8,
             };
             const conversionOptions: IConversionOption = {
                 stringToFloat: ConversionTypeEnum.Float,
                 stringToNumber: ConversionTypeEnum.Number,
                 stringToFalse: ConversionTypeEnum.Boolean,
                 stringToTrue: ConversionTypeEnum.Boolean,
+                numberToString: ConversionTypeEnum.String,
             };
 
             Util.convertDataUsingOptions(data, conversionOptions);
@@ -117,6 +127,7 @@ describe('Util', () => {
                 stringToFalse: false,
                 stringToTrue: true,
                 noChange: '8',
+                numberToString: '8',
             });
         });
 

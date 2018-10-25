@@ -121,10 +121,10 @@ export class BaseModel extends BaseObject implements IBaseModel {
             .forEach((propertyName: string) => {
                 // Ignore the sjsId property because it is set in the BaseObject constructor and we don't want to update it.
                 if (propertyName !== 'sjsId' && propertyName !== 'sjsOptions') {
-                    const currentPropertyData: any = (this as any)[propertyName];
+                    const currentPropertyData: any = this[propertyName];
                     const passedInDataForProperty: any = dataToUse[propertyName];
 
-                    (this as any)[propertyName] = this._getPropertyData(currentPropertyData, passedInDataForProperty);
+                    this[propertyName] = this._getPropertyData(currentPropertyData, passedInDataForProperty);
                 }
             });
 
