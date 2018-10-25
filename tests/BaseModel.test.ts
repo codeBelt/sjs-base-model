@@ -5,6 +5,7 @@ import {UserModel} from './data/models/UserModel';
 import {UserResponseModel} from './data/models/UserResponseModel';
 import {Util} from '../src/Util';
 import {ConversionInfoModel} from './data/models/ConversionInfoModel';
+import {NonExistentKeyConversionModel} from './data/models/NonExistentKeyConversionModel';
 
 describe('BaseModel', () => {
 
@@ -222,6 +223,14 @@ describe('BaseModel', () => {
             page: 1,
             version: 1.1
         });
+    });
+
+    it('should test non existent keys on IConversionOption', () => {
+        const json: any = {};
+
+        expect(() => {
+            new NonExistentKeyConversionModel(json)
+        }).toThrow(SyntaxError);
     });
 
 });
