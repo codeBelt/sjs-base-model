@@ -7,5 +7,5 @@ export declare class Util {
     static clone(src: any, renamePropertyName?: (keyName: string) => string): any;
     static toBoolean(value: string | number | boolean): boolean;
     static convertDataUsingOptions(data: object, conversionOptions: IConversionOption): void;
-    static convertDataToType(propertyData: string | number, conversionType: ConversionTypeEnum): string | number | boolean;
+    static convertDataToType(propertyData: string | number | boolean, conversionType: ConversionTypeEnum): string | number | boolean;
 }
