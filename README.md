@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://npmcharts.com/compare/sjs-base-model?minimal=true"><img src="https://img.shields.io/npm/dm/sjs-base-model.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/sjs-base-model"><img src="https://img.shields.io/npm/v/sjs-base-model.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/sjs-base-model"><img src="https://img.shields.io/npm/l/sjs-base-model.svg" alt="License"></a>
+</p>
+
 # sjs-base-model
 
 BaseModel helps translate data to models
