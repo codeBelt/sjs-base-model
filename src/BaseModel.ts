@@ -128,7 +128,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
                 }
             });
 
-        Util.convertDataUsingOptions(this, conversionOptions);
+        Util.convertDataUsingConversionOptions(this, conversionOptions);
 
         return this;
     }

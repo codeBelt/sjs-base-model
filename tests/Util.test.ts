@@ -78,30 +78,30 @@ describe('Util', () => {
         expect(Util.toBoolean(false)).toBeFalsy();
     });
 
-    it('Util.convertDataToType()', () => {
-        expect(Util.convertDataToType(1.02323, ConversionTypeEnum.Number)).toEqual(1);
-        expect(Util.convertDataToType(1, ConversionTypeEnum.Number)).toEqual(1);
-        expect(Util.convertDataToType('1', ConversionTypeEnum.Number)).toEqual(1);
-        expect(Util.convertDataToType(null, ConversionTypeEnum.Number)).toEqual(null);
+    it('Util.convertDataToConversionType()', () => {
+        expect(Util.convertDataToConversionType(1.02323, ConversionTypeEnum.Number)).toEqual(1);
+        expect(Util.convertDataToConversionType(1, ConversionTypeEnum.Number)).toEqual(1);
+        expect(Util.convertDataToConversionType('1', ConversionTypeEnum.Number)).toEqual(1);
+        expect(Util.convertDataToConversionType(null, ConversionTypeEnum.Number)).toEqual(null);
 
-        expect(Util.convertDataToType('1', ConversionTypeEnum.Boolean)).toEqual(true);
-        expect(Util.convertDataToType(0, ConversionTypeEnum.Boolean)).toEqual(false);
-        expect(Util.convertDataToType('0', ConversionTypeEnum.Boolean)).toEqual(false);
-        expect(Util.convertDataToType('FALSE', ConversionTypeEnum.Boolean)).toEqual(false);
-        expect(Util.convertDataToType('', ConversionTypeEnum.Boolean)).toEqual(false);
-        expect(Util.convertDataToType(null, ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToConversionType('1', ConversionTypeEnum.Boolean)).toEqual(true);
+        expect(Util.convertDataToConversionType(0, ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToConversionType('0', ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToConversionType('FALSE', ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToConversionType('', ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToConversionType(null, ConversionTypeEnum.Boolean)).toEqual(false);
 
-        expect(Util.convertDataToType('01.02', ConversionTypeEnum.Float)).toEqual(1.02);
-        expect(Util.convertDataToType(1, ConversionTypeEnum.Float)).toEqual(1);
-        expect(Util.convertDataToType(2222.22222222, ConversionTypeEnum.Float)).toEqual(2222.22222222);
-        expect(Util.convertDataToType(null, ConversionTypeEnum.Float)).toEqual(null);
+        expect(Util.convertDataToConversionType('01.02', ConversionTypeEnum.Float)).toEqual(1.02);
+        expect(Util.convertDataToConversionType(1, ConversionTypeEnum.Float)).toEqual(1);
+        expect(Util.convertDataToConversionType(2222.22222222, ConversionTypeEnum.Float)).toEqual(2222.22222222);
+        expect(Util.convertDataToConversionType(null, ConversionTypeEnum.Float)).toEqual(null);
 
-        expect(Util.convertDataToType(1.11, ConversionTypeEnum.String)).toEqual('1.11');
-        expect(Util.convertDataToType(false, ConversionTypeEnum.String)).toEqual('false');
-        expect(Util.convertDataToType(null, ConversionTypeEnum.String)).toEqual(null);
+        expect(Util.convertDataToConversionType(1.11, ConversionTypeEnum.String)).toEqual('1.11');
+        expect(Util.convertDataToConversionType(false, ConversionTypeEnum.String)).toEqual('false');
+        expect(Util.convertDataToConversionType(null, ConversionTypeEnum.String)).toEqual(null);
     });
 
-    describe('Util.convertDataUsingOptions()', () => {
+    describe('Util.convertDataUsingConversionOptions()', () => {
         it('Should convert data types', () => {
             let data: object = {
                 stringToFloat: '23.345',
@@ -119,7 +119,7 @@ describe('Util', () => {
                 numberToString: ConversionTypeEnum.String,
             };
 
-            Util.convertDataUsingOptions(data, conversionOptions);
+            Util.convertDataUsingConversionOptions(data, conversionOptions);
 
             expect(data).toEqual({
                 stringToFloat: 23.345,
@@ -140,7 +140,7 @@ describe('Util', () => {
             };
 
             expect(() => {
-                Util.convertDataUsingOptions(json, conversionOptions)
+                Util.convertDataUsingConversionOptions(json, conversionOptions)
             }).toThrow(SyntaxError);
         });
     })

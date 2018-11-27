@@ -150,7 +150,7 @@ export class Util {
         return !(normalized == null || normalized <= 0 || normalized === 'false' || normalized === 'off');
     }
 
-    public static convertDataUsingOptions(data: object, conversionOptions: IConversionOption): void {
+    public static convertDataUsingConversionOptions(data: object, conversionOptions: IConversionOption): void {
         Object
             .keys(conversionOptions)
             .forEach((conversionPropertyName: string) => {
@@ -158,14 +158,14 @@ export class Util {
                     const propertyData: number | string = data[conversionPropertyName];
                     const conversionType: ConversionTypeEnum = conversionOptions[conversionPropertyName];
 
-                    data[conversionPropertyName] = Util.convertDataToType(propertyData, conversionType);
+                    data[conversionPropertyName] = Util.convertDataToConversionType(propertyData, conversionType);
                 } else {
                     throw new SyntaxError(`Conversion property name "${conversionPropertyName}" does not match a property name on the model.`);
                 }
             });
     }
 
-    public static convertDataToType(propertyData: string | number | boolean, conversionType: ConversionTypeEnum): string | number | boolean {
+    public static convertDataToConversionType(propertyData: string | number | boolean, conversionType: ConversionTypeEnum): string | number | boolean {
         switch (conversionType) {
             case ConversionTypeEnum.Boolean:
                 return Util.toBoolean(propertyData);
