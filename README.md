@@ -103,14 +103,16 @@ export default class CarModel extends BaseModel {
 
 ## BaseModel Conversion Types
 
-`BaseModel` has the ability to convert data when passed to the `update` method. For example if a string number was passed in `"2"` and you wanted to be an actual number `2` then you can give it the property name and associate it with the correct `ConversionTypeEnum`. Currently it only supports `number`, `float`, `string` and `boolean`. See below for an example:
+`BaseModel` has the ability to convert data when passed to the `update` method. For example if a string number was passed in `"2"` and you wanted to be an actual number `2` then you can give it the property name and associate it with the correct `ConversionTypeEnum`. Currently it only supports `number`, `float`, `boolean`, `string` and `json`. See below for an example:
 
 ```javascript
 const json = {
     "seed": "abc",
-    "results": "3",   // We want this to be a boolean
-    "page": "1",      // We want this to be a number
-    "version": "1.1"  // We want this to be a float number
+    "results": "3",    // We want this to be a boolean
+    "page": "1",       // We want this to be a number
+    "version": "1.1",  // We want this to be a float number
+    "value": 4         // We want this to be a string
+    "statuses": "{\"complete\":\"Complete\"}"  // We want this to be a JSON object
 };
 
 const model = new SomeModel(json);
@@ -127,6 +129,8 @@ export default class SomeModel extends BaseModel {
     results = false; // Previously string; converted to boolean by IConversionOption
     page = null; // Previously string; converted to number by IConversionOption
     version = null; // Previously string; converted to float by IConversionOption
+    value = ''; // Previously number; converted to string by IConversionOption
+    statuses = null; // Previously string; converted to JSON by IConversionOption
 
     constructor(data) {
         super();
@@ -139,6 +143,8 @@ export default class SomeModel extends BaseModel {
             results: ConversionTypeEnum.Boolean,
             page: ConversionTypeEnum.Number,
             version: ConversionTypeEnum.Float,
+            value: ConversionTypeEnum.String,
+            statuses: ConversionTypeEnum.JSON,
         };
 
         super.update(data, conversionOptions);
@@ -158,6 +164,8 @@ export default class SomeModel extends BaseModel {
     public results: boolean = false; // Previously string; converted to boolean by IConversionOption
     public page: number = null; // Previously string; converted to number by IConversionOption
     public version: number = null; // Previously string; converted to float by IConversionOption
+    public value: string = ''; // Previously number; converted to string by IConversionOption
+    public statuses: object = null; // Previously string; converted to JSON by IConversionOption
 
     constructor(data: Partial<SomeModel>) {
         super();
@@ -170,6 +178,8 @@ export default class SomeModel extends BaseModel {
             results: ConversionTypeEnum.Boolean,
             page: ConversionTypeEnum.Number,
             version: ConversionTypeEnum.Float,
+            value: ConversionTypeEnum.String,
+            statuses: ConversionTypeEnum.JSON,
         };
 
         super.update(data, conversionOptions);
