@@ -3,4 +3,5 @@ export declare enum ConversionTypeEnum {
     Float = "float",
     Boolean = "boolean",
     String = "string",
+    JSON = "json",
 }
