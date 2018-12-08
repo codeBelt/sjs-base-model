@@ -181,6 +181,10 @@ export class Util {
                 return (propertyData === null)
                     ? propertyData
                     : String(propertyData);
+            case ConversionTypeEnum.JSON:
+                return (propertyData === null)
+                    ? propertyData
+                    : JSON.parse(propertyData as string);
             default:
                 return propertyData;
         }
