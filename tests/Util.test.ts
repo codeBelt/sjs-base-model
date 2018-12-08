@@ -110,6 +110,7 @@ describe('Util', () => {
                 stringToTrue: '1',
                 noChange: '8',
                 numberToString: 8,
+                stringToJson: "{\"complete\":\"Complete\",\"new\":\"New\",\"open\":\"Open\"}",
             };
             const conversionOptions: IConversionOption = {
                 stringToFloat: ConversionTypeEnum.Float,
@@ -117,6 +118,7 @@ describe('Util', () => {
                 stringToFalse: ConversionTypeEnum.Boolean,
                 stringToTrue: ConversionTypeEnum.Boolean,
                 numberToString: ConversionTypeEnum.String,
+                stringToJson: ConversionTypeEnum.JSON,
             };
 
             Util.convertDataUsingConversionOptions(data, conversionOptions);
@@ -128,6 +130,7 @@ describe('Util', () => {
                 stringToTrue: true,
                 noChange: '8',
                 numberToString: '8',
+                stringToJson: {complete: "Complete", new: "New", open: "Open"},
             });
         });
 

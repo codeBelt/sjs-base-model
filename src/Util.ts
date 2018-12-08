@@ -155,7 +155,7 @@ export class Util {
             .keys(conversionOptions)
             .forEach((conversionPropertyName: string) => {
                 if (data.hasOwnProperty(conversionPropertyName)) {
-                    const propertyData: number | string = data[conversionPropertyName];
+                    const propertyData: number | string | boolean = data[conversionPropertyName];
                     const conversionType: ConversionTypeEnum = conversionOptions[conversionPropertyName];
 
                     data[conversionPropertyName] = Util.convertDataToConversionType(propertyData, conversionType);
@@ -165,22 +165,26 @@ export class Util {
             });
     }
 
-    public static convertDataToConversionType(propertyData: string | number | boolean, conversionType: ConversionTypeEnum): string | number | boolean {
+    public static convertDataToConversionType(propertyData: string | number | boolean, conversionType: ConversionTypeEnum): string | number | boolean | object {
         switch (conversionType) {
             case ConversionTypeEnum.Boolean:
                 return Util.toBoolean(propertyData);
             case ConversionTypeEnum.Float:
                 return (propertyData === null)
-                    ? propertyData
+                    ? null
                     : parseFloat(propertyData as string);
             case ConversionTypeEnum.Number:
                 return (propertyData === null)
-                    ? propertyData
+                    ? null
                     : parseInt(propertyData as string, 10);
             case ConversionTypeEnum.String:
                 return (propertyData === null)
-                    ? propertyData
+                    ? null
                     : String(propertyData);
+            case ConversionTypeEnum.JSON:
+                return (propertyData == null)
+                    ? null
+                    : JSON.parse(propertyData as string);
             default:
                 return propertyData;
         }
