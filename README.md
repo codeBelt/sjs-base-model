@@ -160,12 +160,12 @@ import {BaseModel, ConversionTypeEnum, IConversionOption} from 'sjs-base-model';
 
 export default class SomeModel extends BaseModel {
 
-    public seed: string = '';
-    public results: boolean = false; // Previously string; converted to boolean by IConversionOption
-    public page: number = null; // Previously string; converted to number by IConversionOption
-    public version: number = null; // Previously string; converted to float by IConversionOption
-    public value: string = ''; // Previously number; converted to string by IConversionOption
-    public statuses: object = null; // Previously string; converted to JSON by IConversionOption
+    public readonly seed: string = '';
+    public readonly results: boolean = false; // Previously string; converted to boolean by IConversionOption
+    public readonly page: number = null; // Previously string; converted to number by IConversionOption
+    public readonly version: number = null; // Previously string; converted to float by IConversionOption
+    public readonly value: string = ''; // Previously number; converted to string by IConversionOption
+    public readonly statuses: object = null; // Previously string; converted to JSON by IConversionOption
 
     constructor(data: Partial<SomeModel>) {
         super();
