@@ -35,6 +35,17 @@ describe('BaseModel', () => {
         expect(model.sjsOptions).toEqual({expand: false});
     });
 
+    it('should clone and not mutate data', () => {
+        const model = new UserResponseModel(json);
+        const clone = model.clone<UserResponseModel>();
+
+        clone.info.version = '888';
+
+        expect(model.info.sjsId).not.toEqual(clone.info.sjsId);
+        expect(model.info).not.toEqual(clone.info);
+        expect(model.toJSON()).not.toEqual(clone.toJSON());
+    });
+
     it('should assign single items into array property of UserResponseModel', () => {
         const model = new UserResponseModel({
             results: {gender: 'male'},
