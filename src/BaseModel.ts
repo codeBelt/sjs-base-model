@@ -69,7 +69,6 @@ import {Util} from './Util';
  *      }
  */
 export class BaseModel extends BaseObject implements IBaseModel {
-
     /**
      * This property helps distinguish a BaseModel from other functions.
      *
@@ -112,21 +111,17 @@ export class BaseModel extends BaseObject implements IBaseModel {
      *     carModel.allWheel = false;
      */
     public update(data: any = {}, conversionOptions: IConversionOption = {}): any {
-        const dataToUse: {[propertyName: string]: any} = this._isObject(data, true)
-            ? data
-            : {};
+        const dataToUse: {[propertyName: string]: any} = this._isObject(data, true) ? data : {};
 
-        Object
-            .keys(this)
-            .forEach((propertyName: string) => {
-                // Ignore the sjsId property because it is set in the BaseObject constructor and we don't want to update it.
-                if (propertyName !== 'sjsId' && propertyName !== 'sjsOptions') {
-                    const currentPropertyData: any = this[propertyName];
-                    const passedInDataForProperty: any = dataToUse[propertyName];
+        Object.keys(this).forEach((propertyName: string) => {
+            // Ignore the sjsId property because it is set in the BaseObject constructor and we don't want to update it.
+            if (propertyName !== 'sjsId' && propertyName !== 'sjsOptions') {
+                const currentPropertyData: any = this[propertyName];
+                const passedInDataForProperty: any = dataToUse[propertyName];
 
-                    this[propertyName] = this._getPropertyData(currentPropertyData, passedInDataForProperty);
-                }
-            });
+                this[propertyName] = this._getPropertyData(currentPropertyData, passedInDataForProperty);
+            }
+        });
 
         Util.convertDataUsingConversionOptions(this, conversionOptions);
 
@@ -219,9 +214,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
                 return currentPropertyData;
             }
 
-            const arrayData: any[] = (Array.isArray(passedInDataForProperty) === false)
-                ? [passedInDataForProperty]
-                : passedInDataForProperty;
+            const arrayData: any[] = Array.isArray(passedInDataForProperty) === false ? [passedInDataForProperty] : passedInDataForProperty;
 
             if (isBaseModelClass === true) {
                 return arrayData.map((json: object) => new fistItemInArray(json, this.sjsOptions));
@@ -234,7 +227,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
             return arrayData;
         }
 
-        return (passedInDataForProperty == null)
+        return passedInDataForProperty == null
             ? this._updateData(currentPropertyData, null)
             : this._updateData(currentPropertyData, passedInDataForProperty);
     }
@@ -262,9 +255,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
         if (isBaseModelClass === true && (isPassedInDataAnObjectWithProperties === true || this.sjsOptions.expand === true)) {
             // If data is passed in or the expand option is set to true then create the BaseModel.
             // Give the constructor the passed in data or an empty object if the expand is true.
-            const obj: object = isPassedInDataAnObjectWithProperties
-                ? passedInDataForProperty
-                : {};
+            const obj: object = isPassedInDataAnObjectWithProperties ? passedInDataForProperty : {};
 
             return new currentPropertyData(obj, this.sjsOptions);
         } else if (isBaseModelClass === true) {
@@ -273,9 +264,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
         }
 
         // If there is no data passed in then return the data that is currently on the property so it stays the same.
-        return (passedInDataForProperty != null)
-            ? passedInDataForProperty
-            : currentPropertyData;
+        return passedInDataForProperty != null ? passedInDataForProperty : currentPropertyData;
     }
 
     /**
@@ -323,9 +312,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
      * @protected
      */
     protected _isObject(data: any, consoleError: boolean = false): boolean {
-        const isObject: boolean = Boolean(data)
-            && Array.isArray(data) === false
-            && typeof data === 'object';
+        const isObject: boolean = Boolean(data) && Array.isArray(data) === false && typeof data === 'object';
 
         if (isObject === false && consoleError === true) {
             console.error(`Something is wrong! ${this.getClassName()} only allows Objects but "${data}" was passed in.`);
@@ -333,5 +320,4 @@ export class BaseModel extends BaseObject implements IBaseModel {
 
         return isObject;
     }
-
 }

@@ -2,7 +2,6 @@ import {Util} from '../src/Util';
 import {ConversionTypeEnum, IConversionOption} from '../src';
 
 describe('Util', () => {
-
     let json: any = null;
 
     beforeEach(() => {
@@ -12,12 +11,11 @@ describe('Util', () => {
             YeAr: 2014,
             feature: {
                 abs: true,
-                airbags: true
+                airbags: true,
             },
-            colors: [{id: 'red', name: 'Red'}, {id: 'white', name: 'White'}]
+            colors: [{id: 'red', name: 'Red'}, {id: 'white', name: 'White'}],
         };
     });
-
 
     it('Util.uniqueId()', () => {
         const expected: number = 1;
@@ -27,7 +25,7 @@ describe('Util', () => {
     });
 
     it('Util.deletePropertyFromObject()', () => {
-        const obj: any = { name: 'Robert', gender: 'male', phone: '555-555-5555' };
+        const obj: any = {name: 'Robert', gender: 'male', phone: '555-555-5555'};
         const expected: any = {name: 'Robert'};
         const actual: any = Util.deletePropertyFromObject(obj, ['phone', 'gender']);
 
@@ -48,9 +46,9 @@ describe('Util', () => {
             the_YeAr: 2014,
             the_feature: {
                 the_abs: true,
-                the_airbags: true
+                the_airbags: true,
             },
-            the_colors: [{the_id: 'red', the_name: 'Red'}, {the_id: 'white', the_name: 'White'}]
+            the_colors: [{the_id: 'red', the_name: 'Red'}, {the_id: 'white', the_name: 'White'}],
         };
         const actual: any = Util.clone(json, (propertyName: string) => {
             return `the_${propertyName}`;
@@ -110,7 +108,7 @@ describe('Util', () => {
                 stringToTrue: '1',
                 noChange: '8',
                 numberToString: 8,
-                stringToJson: "{\"complete\":\"Complete\",\"new\":\"New\",\"open\":\"Open\"}",
+                stringToJson: '{"complete":"Complete","new":"New","open":"Open"}',
             };
             const conversionOptions: IConversionOption = {
                 stringToFloat: ConversionTypeEnum.Float,
@@ -130,7 +128,7 @@ describe('Util', () => {
                 stringToTrue: true,
                 noChange: '8',
                 numberToString: '8',
-                stringToJson: {complete: "Complete", new: "New", open: "Open"},
+                stringToJson: {complete: 'Complete', new: 'New', open: 'Open'},
             });
         });
 
@@ -143,9 +141,8 @@ describe('Util', () => {
             };
 
             expect(() => {
-                Util.convertDataUsingConversionOptions(json, conversionOptions)
+                Util.convertDataUsingConversionOptions(json, conversionOptions);
             }).toThrow(SyntaxError);
         });
-    })
-
+    });
 });

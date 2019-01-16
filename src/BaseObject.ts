@@ -9,7 +9,6 @@ import {Util} from './Util';
  * @author Robert S. (www.codeBelt.com)
  */
 export class BaseObject {
-
     /**
      * The sjsId (StructureJS ID) is a unique identifier automatically assigned to most StructureJS objects upon instantiation.
      *
@@ -51,7 +50,7 @@ export class BaseObject {
     public destroy(): void {
         Object.keys(this)
             .filter((propertyName: string) => propertyName !== 'sjsId')
-            .forEach((propertyName: string) => this[propertyName] = null);
+            .forEach((propertyName: string) => (this[propertyName] = null));
     }
 
     /**
@@ -64,5 +63,4 @@ export class BaseObject {
     public getClassName(): string {
         return (this as any).constructor.name;
     }
-
 }

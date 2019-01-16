@@ -8,7 +8,6 @@ import {ConversionInfoModel} from './data/models/ConversionInfoModel';
 import {NonExistentKeyConversionModel} from './data/models/NonExistentKeyConversionModel';
 
 describe('BaseModel', () => {
-
     let baseModel: BaseModel = null;
     let json: any = null;
 
@@ -81,7 +80,9 @@ describe('BaseModel', () => {
 
         const expectedData = {
             ...json,
-            results: json.results.map((resultItem: any) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
+            results: json.results.map((resultItem: any) =>
+                Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
+            ),
         };
 
         expect(model.toJSON()).toEqual(expectedData);
@@ -92,7 +93,9 @@ describe('BaseModel', () => {
 
         const expectedData = {
             ...json,
-            results: json.results.map((resultItem: any) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
+            results: json.results.map((resultItem: any) =>
+                Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
+            ),
         };
 
         model.update({});
@@ -106,7 +109,9 @@ describe('BaseModel', () => {
 
         const expectedData = {
             ...json,
-            results: json.results.map((resultItem: any) => Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])),
+            results: json.results.map((resultItem: any) =>
+                Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
+            ),
         };
 
         expect(model.toJSON()).toEqual(expectedData);
@@ -118,29 +123,33 @@ describe('BaseModel', () => {
         expect(model.results.length).toBe(3);
 
         model.update({
-            results: [{
-                email: 'example@example.com',
-                name: {
-                    last: 'Cool'
-                }
-            }],
+            results: [
+                {
+                    email: 'example@example.com',
+                    name: {
+                        last: 'Cool',
+                    },
+                },
+            ],
         });
 
         expect(model.results.length).toBe(1);
         expect(model.results[0]).toBeInstanceOf(UserModel);
         expect(model.toJSON()).toEqual({
             ...json,
-            results: [{
-                picture: null,
-                gender: '',
-                nat: '',
-                email: 'example@example.com',
-                name: {
-                    first: '',
-                    title: '',
-                    last: 'Cool',
-                }
-            }]
+            results: [
+                {
+                    picture: null,
+                    gender: '',
+                    nat: '',
+                    email: 'example@example.com',
+                    name: {
+                        first: '',
+                        title: '',
+                        last: 'Cool',
+                    },
+                },
+            ],
         });
     });
 
@@ -197,20 +206,8 @@ describe('BaseModel', () => {
     it('should test isObject', () => {
         const baseModel = new BaseModel();
 
-        const objects: object[] = [
-            {},
-            new UserResponseModel(),
-        ];
-        const nonObjects: any[] = [
-            [],
-            true,
-            false,
-            undefined,
-            null,
-            8,
-            20.18,
-            '🚀',
-        ];
+        const objects: object[] = [{}, new UserResponseModel()];
+        const nonObjects: any[] = [[], true, false, undefined, null, 8, 20.18, '🚀'];
 
         objects.forEach((object: object) => expect(baseModel['_isObject'](object)).toBeTruthy());
         nonObjects.forEach((nonObject: any) => expect(baseModel['_isObject'](nonObject)).toBeFalsy());
@@ -220,10 +217,10 @@ describe('BaseModel', () => {
 
     it('should test IConversionOption', () => {
         const json: any = {
-            "seed": "abc",
-            "results": "3",
-            "page": "1",
-            "version": "1.1"
+            seed: 'abc',
+            results: '3',
+            page: '1',
+            version: '1.1',
         };
 
         const model = new ConversionInfoModel(json);
@@ -232,7 +229,7 @@ describe('BaseModel', () => {
             seed: 'abc',
             results: true,
             page: 1,
-            version: 1.1
+            version: 1.1,
         });
     });
 
@@ -240,8 +237,7 @@ describe('BaseModel', () => {
         const json: any = {};
 
         expect(() => {
-            new NonExistentKeyConversionModel(json)
+            new NonExistentKeyConversionModel(json);
         }).toThrow(SyntaxError);
     });
-
 });

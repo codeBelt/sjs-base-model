@@ -1,22 +1,23 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "inlineSources": true,
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "noUnusedLocals": true,
-    "preserveConstEnums": true,
-    "removeComments": true,
+    "noImplicitAny": true,
+    "declarationDir": "dist/types",
+    "declaration": true,
     "sourceMap": true,
-    "target": "es5"
+    "target": "es2015",
+    "module": "ES2015",
+    "strict": true,
+    "strictNullChecks": false,
+    "lib": ["dom", "es2017"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "src/**/*.test.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "lib", "**/*.test.ts", "**/*.spec.ts"]
 }

@@ -2,7 +2,6 @@ import {BaseObject} from '../src/BaseObject';
 import {InfoModel} from './data/models/InfoModel';
 
 describe('BaseObject', () => {
-
     it('baseObject.sjsId', () => {
         const baseObject = new BaseObject();
         const expected: number = 1;
@@ -20,5 +19,4 @@ describe('BaseObject', () => {
 
         expect(infoModel.sjsOptions).toBe(null);
     });
-
 });

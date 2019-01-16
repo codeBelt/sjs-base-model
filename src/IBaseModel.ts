@@ -4,7 +4,6 @@
  * @interface
  */
 export interface IBaseModel {
-
     /**
      * @method update
      */
@@ -29,5 +28,4 @@ export interface IBaseModel {
      * @method clone
      */
     clone(): IBaseModel;
-
 }

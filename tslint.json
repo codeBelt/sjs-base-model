@@ -1,18 +1,12 @@
 {
-  "extends": [
-    "tslint:recommended",
-    "tslint-eslint-rules"
-  ],
-  "defaultSeverity": "warning",
-  "jsRules": {},
+  "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
     "arrow-parens": true,
     "arrow-return-shorthand": [true],
-    "comment-format": [true, "check-space"],
+    "comment-format": [true],
     "curly": true,
-    "import-blacklist": [true, "rxjs"],
+    "interface-name": [true, "always-prefix"],
     "interface-over-type-literal": true,
-    "jsx-no-multiline-js": false,
     "max-line-length": [false],
     "member-access": true,
     "member-ordering": [true, {"order": "fields-first"}],
@@ -39,13 +33,16 @@
     "only-arrow-functions": [true, "allow-declarations"],
     "ordered-imports": [false],
     "prefer-conditional-expression": [true, "check-else-if"],
-    "prefer-method-signature": true,
+    "prefer-method-signature": false,
     "prefer-template": [true, "allow-single-concat"],
-    "quotemark": [true, "single", "jsx-double"],
+    "quotemark": [true, "single"],
     "semicolon": [true],
+    "trailing-comma": [
+      true,
+      {"multiline": {"objects": "always", "arrays": "always", "functions": "never", "typeLiterals": "ignore"}, "esSpecCompliant": true}
+    ],
     "triple-equals": [true, "allow-null-check"],
-    "typedef": [true,"parameter", "property-declaration"],
+    "typedef": [true, "parameter", "property-declaration"],
     "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case", "allow-leading-underscore"]
-  },
-  "rulesDirectory": []
+  }
 }
