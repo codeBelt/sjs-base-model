@@ -46,7 +46,7 @@ export default [
         plugins: [...commonPlugins, uglify()],
         output: [
             {
-                file: pkg.browser,
+                file: 'dist/index.iife.js',
                 format: 'iife',
                 name,
             },
