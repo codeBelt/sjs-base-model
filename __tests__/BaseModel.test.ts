@@ -71,7 +71,7 @@ describe('BaseModel', () => {
     it('should have default of UserResponseModel with null passed in', () => {
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
 
-        const model = new UserResponseModel(null);
+        const model = new UserResponseModel(null as any);
 
         expect(model.info).toEqual(null);
         expect(model.results).toEqual([]);

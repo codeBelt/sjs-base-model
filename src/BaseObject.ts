@@ -19,11 +19,7 @@ export class BaseObject {
      * @readOnly
      * @public
      */
-    public sjsId: number = null;
-
-    constructor() {
-        this.sjsId = Util.uniqueId();
-    }
+    public sjsId: number = Util.uniqueId();
 
     /**
      * The purpose of the destroy method is to make an object ready for garbage collection. This

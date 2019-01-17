@@ -34,10 +34,10 @@ export class Util {
      *      let property = Util.uniqueId('prefixName_');
      *      // prefixName_1
      */
-    public static uniqueId(prefix: string = null): any {
+    public static uniqueId(prefix?: string): any {
         const id: number = ++Util._idCounter;
 
-        if (prefix != null) {
+        if (prefix) {
             return String(prefix + id);
         } else {
             return id;
@@ -91,7 +91,7 @@ export class Util {
      * @example
      *      let cloneOfObject = Util.clone(obj);
      */
-    public static clone(src: any, renamePropertyName: (keyName: string) => string = null): any {
+    public static clone(src: any, renamePropertyName?: (keyName: string) => string): any {
         if (src === null || typeof src === 'undefined' || typeof src !== 'object') {
             return src;
         }
@@ -112,7 +112,7 @@ export class Util {
             const objCopy: {[key: string]: any} = {};
 
             Object.keys(src).forEach((keyName: string) => {
-                const name: string = renamePropertyName !== null ? renamePropertyName(keyName) : keyName;
+                const name: string = renamePropertyName ? renamePropertyName(keyName) : keyName;
 
                 objCopy[name] = Util.clone(src[keyName], renamePropertyName);
             });
@@ -138,8 +138,8 @@ export class Util {
      *      Util.toBoolean(undefined);
      *      // false
      */
-    public static toBoolean(value: string | number | boolean): boolean {
-        const normalized: string | number | boolean = typeof value === 'string' ? value.toLowerCase() : value;
+    public static toBoolean(value: null | undefined | string | number | boolean): boolean {
+        const normalized: null | undefined | string | number | boolean = typeof value === 'string' ? value.toLowerCase() : value;
 
         return !(normalized == null || normalized <= 0 || normalized === 'false' || normalized === 'off');
     }
@@ -158,9 +158,9 @@ export class Util {
     }
 
     public static convertDataToConversionType(
-        propertyData: string | number | boolean,
+        propertyData: null | string | number | boolean,
         conversionType: ConversionTypeEnum
-    ): string | number | boolean | object {
+    ): null | string | number | boolean | object {
         switch (conversionType) {
             case ConversionTypeEnum.Boolean:
                 return Util.toBoolean(propertyData);
