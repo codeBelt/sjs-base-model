@@ -16,14 +16,14 @@ describe('Util', () => {
         };
     });
 
-    it('Util.uniqueId()', () => {
+    test('Util.uniqueId()', () => {
         const expected: number = 1;
         const actual: number = Util.uniqueId();
 
         expect(expected).toEqual(actual);
     });
 
-    it('Util.deletePropertyFromObject()', () => {
+    test('Util.deletePropertyFromObject()', () => {
         const obj: any = {name: 'Robert', gender: 'male', phone: '555-555-5555'};
         const expected: any = {name: 'Robert'};
         const actual: any = Util.deletePropertyFromObject(obj, ['phone', 'gender']);
@@ -31,14 +31,14 @@ describe('Util', () => {
         expect(expected).toEqual(actual);
     });
 
-    it('Util.clone()', () => {
+    test('Util.clone()', () => {
         const expected: any = json;
         const actual: any = Util.clone(json);
 
         expect(expected).toEqual(actual);
     });
 
-    it('Util.clone() and rename', () => {
+    test('Util.clone() and rename', () => {
         const expected: any = {
             the_make: 'Tesla',
             the_model: 'Model S',
@@ -56,7 +56,7 @@ describe('Util', () => {
         expect(expected).toEqual(actual);
     });
 
-    it('Util.toBoolean()', () => {
+    test('Util.toBoolean()', () => {
         expect(Util.toBoolean(1)).toBeTruthy();
         expect(Util.toBoolean('1')).toBeTruthy();
         expect(Util.toBoolean(true)).toBeTruthy();
@@ -75,7 +75,7 @@ describe('Util', () => {
         expect(Util.toBoolean(false)).toBeFalsy();
     });
 
-    it('Util.convertDataToConversionType()', () => {
+    test('Util.convertDataToConversionType()', () => {
         expect(Util.convertDataToConversionType(1.02323, ConversionTypeEnum.Number)).toEqual(1);
         expect(Util.convertDataToConversionType(1, ConversionTypeEnum.Number)).toEqual(1);
         expect(Util.convertDataToConversionType('1', ConversionTypeEnum.Number)).toEqual(1);
@@ -99,7 +99,7 @@ describe('Util', () => {
     });
 
     describe('Util.convertDataUsingConversionOptions()', () => {
-        it('Should convert data types', () => {
+        test('Should convert data types', () => {
             const data: object = {
                 stringToFloat: '23.345',
                 stringToNumber: '23.345',
@@ -131,7 +131,7 @@ describe('Util', () => {
             });
         });
 
-        it('should throw error on non existent key', () => {
+        test('should throw error on non existent key', () => {
             const data: any = {
                 something: '',
             };

@@ -18,18 +18,18 @@ describe('BaseModel', () => {
         json = null;
     });
 
-    it('update returns itself', () => {
+    test('update returns itself', () => {
         const baseModel = new BaseModel();
         expect(baseModel.update()).toEqual(baseModel);
     });
 
-    it('should populate InfoModel', () => {
+    test('should populate InfoModel', () => {
         const model = new InfoModel(json.info);
 
         expect(model.toJSON()).toEqual(json.info);
     });
 
-    it('should have default of UserResponseModel', () => {
+    test('should have default of UserResponseModel', () => {
         const model = new UserResponseModel();
 
         expect(model.info).toEqual(null);
@@ -37,7 +37,7 @@ describe('BaseModel', () => {
         expect(model.sjsOptions).toEqual({expand: false});
     });
 
-    it('should clone and not mutate data', () => {
+    test('should clone and not mutate data', () => {
         const model = new UserResponseModel(json);
         const clone = model.clone<UserResponseModel>();
 
@@ -48,7 +48,7 @@ describe('BaseModel', () => {
         expect(model.toJSON()).not.toEqual(clone.toJSON());
     });
 
-    it('should assign single items into array property of UserResponseModel', () => {
+    test('should assign single items into array property of UserResponseModel', () => {
         const model = new UserResponseModel({
             results: {gender: 'male'},
             resultsAny: {gender: 'male'},
@@ -68,7 +68,7 @@ describe('BaseModel', () => {
         expect(model.falseToArray).toEqual([false]);
     });
 
-    it('should have default of UserResponseModel with null passed in', () => {
+    test('should have default of UserResponseModel with null passed in', () => {
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
 
         const model = new UserResponseModel(null as any);
@@ -78,7 +78,7 @@ describe('BaseModel', () => {
         expect(model.sjsOptions).toEqual({expand: false});
     });
 
-    it('should have populate UserResponseModel', () => {
+    test('should have populate UserResponseModel', () => {
         const model = new UserResponseModel(json);
 
         const expectedData = {
@@ -91,7 +91,7 @@ describe('BaseModel', () => {
         expect(model.toJSON()).toEqual(expectedData);
     });
 
-    it('should call update with empty object and have no changes', () => {
+    test('should call update with empty object and have no changes', () => {
         const model = new UserResponseModel(json);
 
         const expectedData = {
@@ -106,7 +106,7 @@ describe('BaseModel', () => {
         expect(model.toJSON()).toEqual(expectedData);
     });
 
-    it('should have populate UserResponseModel from same UserResponseModel', () => {
+    test('should have populate UserResponseModel from same UserResponseModel', () => {
         let model = new UserResponseModel(json);
         model = new UserResponseModel(model);
 
@@ -120,7 +120,7 @@ describe('BaseModel', () => {
         expect(model.toJSON()).toEqual(expectedData);
     });
 
-    it('should update email results to one item in the array', () => {
+    test('should update email results to one item in the array', () => {
         const model = new UserResponseModel(json);
 
         expect(model.results.length).toBe(3);
@@ -156,7 +156,7 @@ describe('BaseModel', () => {
         });
     });
 
-    it('should populate UserModel', () => {
+    test('should populate UserModel', () => {
         const theData = json.results[0];
         const model = new UserModel(theData);
 
@@ -165,7 +165,7 @@ describe('BaseModel', () => {
         expect(model.toJSON()).toEqual(expectedData);
     });
 
-    it('should update UserModel', () => {
+    test('should update UserModel', () => {
         const theData = json.results[0];
         const model = new UserModel(theData);
 
@@ -186,7 +186,7 @@ describe('BaseModel', () => {
         });
     });
 
-    it('should expand', () => {
+    test('should expand', () => {
         const expected: any = {
             info: {
                 seed: '',
@@ -206,7 +206,7 @@ describe('BaseModel', () => {
         expect(model.toJSON()).toEqual(expected);
     });
 
-    it('should test isObject', () => {
+    test('should test isObject', () => {
         const model = new BaseModel();
 
         const objects: object[] = [{}, new UserResponseModel()];
@@ -220,7 +220,7 @@ describe('BaseModel', () => {
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
     });
 
-    it('should test IConversionOption', () => {
+    test('should test IConversionOption', () => {
         const dataToBeConverted: any = {
             seed: 'abc',
             results: '3',
@@ -238,7 +238,7 @@ describe('BaseModel', () => {
         });
     });
 
-    it('should test non existent keys on IConversionOption', () => {
+    test('should test non existent keys on IConversionOption', () => {
         expect(() => {
             // tslint:disable-next-line:no-unused-expression
             new NonExistentKeyConversionModel({});
