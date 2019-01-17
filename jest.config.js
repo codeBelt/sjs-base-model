@@ -1,9 +1,8 @@
 // https://github.com/kulshekhar/ts-jest
 
 module.exports = {
-    verbose: false,
+    verbose: true,
     preset: 'ts-jest',
     testEnvironment: 'node',
-    roots: ['<rootDir>/src'],
-    collectCoverageFrom: ['src/**/*.ts'],
+    testMatch: ['**/__tests__/**/*.test.(ts|js)'],
 };

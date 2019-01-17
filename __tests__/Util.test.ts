@@ -1,5 +1,4 @@
-import {Util} from '../src/Util';
-import {ConversionTypeEnum, IConversionOption} from '../src';
+import {Util, ConversionTypeEnum, IConversionOption} from '../src';
 
 describe('Util', () => {
     let json: any = null;
@@ -101,7 +100,7 @@ describe('Util', () => {
 
     describe('Util.convertDataUsingConversionOptions()', () => {
         it('Should convert data types', () => {
-            let data: object = {
+            const data: object = {
                 stringToFloat: '23.345',
                 stringToNumber: '23.345',
                 stringToFalse: '0',
@@ -133,7 +132,7 @@ describe('Util', () => {
         });
 
         it('should throw error on non existent key', () => {
-            const json: any = {
+            const data: any = {
                 something: '',
             };
             const conversionOptions: IConversionOption = {
@@ -141,7 +140,7 @@ describe('Util', () => {
             };
 
             expect(() => {
-                Util.convertDataUsingConversionOptions(json, conversionOptions);
+                Util.convertDataUsingConversionOptions(data, conversionOptions);
             }).toThrow(SyntaxError);
         });
     });

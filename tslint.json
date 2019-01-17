@@ -28,6 +28,7 @@
     "no-trailing-whitespace": true,
     "no-var-keyword": true,
     "object-literal-shorthand": true,
+    "no-object-literal-type-assertion": false,
     "object-literal-sort-keys": false,
     "one-variable-per-declaration": [true],
     "only-arrow-functions": [true, "allow-declarations"],

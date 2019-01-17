@@ -5,6 +5,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "noUnusedLocals": true,

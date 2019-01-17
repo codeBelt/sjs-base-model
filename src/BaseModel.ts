@@ -85,7 +85,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
      * @type {IBaseModelOptions}}
      * @public
      */
-    protected sjsOptions: IBaseModelOptions = {
+    public readonly sjsOptions: IBaseModelOptions = {
         expand: false,
     };
 

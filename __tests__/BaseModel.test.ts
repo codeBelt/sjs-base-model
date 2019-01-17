@@ -1,22 +1,25 @@
-import * as data from './data/results.json';
-import {BaseModel} from '../src/BaseModel';
+import data from './data/results.json';
+import {BaseModel, Util} from '../src';
 import {InfoModel} from './data/models/InfoModel';
 import {UserModel} from './data/models/UserModel';
 import {UserResponseModel} from './data/models/UserResponseModel';
-import {Util} from '../src/Util';
 import {ConversionInfoModel} from './data/models/ConversionInfoModel';
 import {NonExistentKeyConversionModel} from './data/models/NonExistentKeyConversionModel';
+import {NameModel} from './data/models/NameModel';
 
 describe('BaseModel', () => {
-    let baseModel: BaseModel = null;
     let json: any = null;
 
     beforeEach(() => {
-        baseModel = new BaseModel();
-        json = Util.clone(data);
+        json = Util.clone(data as any);
+    });
+
+    afterEach(() => {
+        json = null;
     });
 
     it('update returns itself', () => {
+        const baseModel = new BaseModel();
         expect(baseModel.update()).toEqual(baseModel);
     });
 
@@ -53,7 +56,7 @@ describe('BaseModel', () => {
             nullToArray: null,
             zeroToArray: 0,
             falseToArray: false,
-        });
+        } as any);
 
         expect(model.info).toEqual(null);
         expect(model.results[0]).toBeInstanceOf(UserModel);
@@ -129,7 +132,7 @@ describe('BaseModel', () => {
                     name: {
                         last: 'Cool',
                     },
-                },
+                } as UserModel,
             ],
         });
 
@@ -154,7 +157,7 @@ describe('BaseModel', () => {
     });
 
     it('should populate UserModel', () => {
-        let theData = json.results[0];
+        const theData = json.results[0];
         const model = new UserModel(theData);
 
         const expectedData = Util.deletePropertyFromObject(theData, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id']);
@@ -163,7 +166,7 @@ describe('BaseModel', () => {
     });
 
     it('should update UserModel', () => {
-        let theData = json.results[0];
+        const theData = json.results[0];
         const model = new UserModel(theData);
 
         expect(model.email).toBe(theData.email);
@@ -173,7 +176,7 @@ describe('BaseModel', () => {
             email: 'example@example.com',
             name: {
                 last: 'Cool',
-            },
+            } as NameModel,
         });
 
         expect(model.email).toBe('example@example.com');
@@ -204,26 +207,28 @@ describe('BaseModel', () => {
     });
 
     it('should test isObject', () => {
-        const baseModel = new BaseModel();
+        const model = new BaseModel();
 
         const objects: object[] = [{}, new UserResponseModel()];
         const nonObjects: any[] = [[], true, false, undefined, null, 8, 20.18, '🚀'];
 
-        objects.forEach((object: object) => expect(baseModel['_isObject'](object)).toBeTruthy());
-        nonObjects.forEach((nonObject: any) => expect(baseModel['_isObject'](nonObject)).toBeFalsy());
+        // tslint:disable-next-line:no-string-literal
+        objects.forEach((object: object) => expect(model['_isObject'](object)).toBeTruthy());
+        // tslint:disable-next-line:no-string-literal
+        nonObjects.forEach((nonObject: any) => expect(model['_isObject'](nonObject)).toBeFalsy());
 
         console.error('Ignore the "Something is wrong!" errors. They are expected.');
     });
 
     it('should test IConversionOption', () => {
-        const json: any = {
+        const dataToBeConverted: any = {
             seed: 'abc',
             results: '3',
             page: '1',
             version: '1.1',
         };
 
-        const model = new ConversionInfoModel(json);
+        const model = new ConversionInfoModel(dataToBeConverted);
 
         expect(model.toJSON()).toEqual({
             seed: 'abc',
@@ -234,10 +239,9 @@ describe('BaseModel', () => {
     });
 
     it('should test non existent keys on IConversionOption', () => {
-        const json: any = {};
-
         expect(() => {
-            new NonExistentKeyConversionModel(json);
+            // tslint:disable-next-line:no-unused-expression
+            new NonExistentKeyConversionModel({});
         }).toThrow(SyntaxError);
     });
 });
