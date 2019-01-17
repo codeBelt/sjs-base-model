@@ -9,7 +9,6 @@ import {Util} from './Util';
  * @author Robert S. (www.codeBelt.com)
  */
 export class BaseObject {
-
     /**
      * The sjsId (StructureJS ID) is a unique identifier automatically assigned to most StructureJS objects upon instantiation.
      *
@@ -20,11 +19,7 @@ export class BaseObject {
      * @readOnly
      * @public
      */
-    public sjsId: number = null;
-
-    constructor() {
-        this.sjsId = Util.uniqueId();
-    }
+    public sjsId: number = Util.uniqueId();
 
     /**
      * The purpose of the destroy method is to make an object ready for garbage collection. This
@@ -51,7 +46,7 @@ export class BaseObject {
     public destroy(): void {
         Object.keys(this)
             .filter((propertyName: string) => propertyName !== 'sjsId')
-            .forEach((propertyName: string) => this[propertyName] = null);
+            .forEach((propertyName: string) => (this[propertyName] = null));
     }
 
     /**
@@ -64,5 +59,4 @@ export class BaseObject {
     public getClassName(): string {
         return (this as any).constructor.name;
     }
-
 }

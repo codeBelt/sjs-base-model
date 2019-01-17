@@ -4,7 +4,6 @@ import {PictureModel} from './PictureModel';
 import {BaseModel} from '../../../src';
 
 export class UserModel extends BaseModel {
-
     public gender: string = '';
     public name: NameModel = NameModel as any;
     public picture: PictureModel = PictureModel as any;
@@ -20,5 +19,4 @@ export class UserModel extends BaseModel {
     public update(data: Partial<UserModel>): void {
         super.update(data);
     }
-
 }

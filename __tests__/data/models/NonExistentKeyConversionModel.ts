@@ -2,7 +2,6 @@ import {IBaseModelOptions} from '../../../src/IBaseModelOptions';
 import {BaseModel, ConversionTypeEnum, IConversionOption} from '../../../src';
 
 export class NonExistentKeyConversionModel extends BaseModel {
-
     public something: string = '';
 
     constructor(data: Partial<NonExistentKeyConversionModel> = {}, opts: IBaseModelOptions = {}) {
@@ -18,5 +17,4 @@ export class NonExistentKeyConversionModel extends BaseModel {
 
         super.update(data, conversionOptions);
     }
-
 }

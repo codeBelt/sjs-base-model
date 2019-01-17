@@ -4,7 +4,6 @@ import {UserModel} from './UserModel';
 import {BaseModel} from '../../../src';
 
 export class UserResponseModel extends BaseModel {
-
     public info: InfoModel = InfoModel as any;
     public results: UserModel[] = [UserModel as any];
     public resultsAny: any[] = [];
@@ -22,5 +21,4 @@ export class UserResponseModel extends BaseModel {
     public update(data: Partial<UserResponseModel>): void {
         super.update(data);
     }
-
 }

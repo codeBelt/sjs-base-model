@@ -2,7 +2,6 @@ import {IBaseModelOptions} from '../../../src/IBaseModelOptions';
 import {BaseModel} from '../../../src';
 
 export class NameModel extends BaseModel {
-
     public title: string = '';
     public first: string = '';
     public last: string = '';
@@ -16,5 +15,4 @@ export class NameModel extends BaseModel {
     public update(data: Partial<NameModel>): void {
         super.update(data);
     }
-
 }

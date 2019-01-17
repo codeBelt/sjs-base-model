@@ -9,7 +9,6 @@ import {IConversionOption} from './IConversionOption';
  * @static
  */
 export class Util {
-
     /**
      * Keeps track of the count for the uniqueId method.
      *
@@ -35,10 +34,10 @@ export class Util {
      *      let property = Util.uniqueId('prefixName_');
      *      // prefixName_1
      */
-    public static uniqueId(prefix: string = null): any {
+    public static uniqueId(prefix?: string): any {
         const id: number = ++Util._idCounter;
 
-        if (prefix != null) {
+        if (prefix) {
             return String(prefix + id);
         } else {
             return id;
@@ -63,21 +62,19 @@ export class Util {
      */
     public static deletePropertyFromObject(object: any, value: string | string[]): any {
         // If properties is not an array then make it an array object.
-        const propertyNameList: any = (value instanceof Array) ? value : [value];
+        const propertyNameList: any = value instanceof Array ? value : [value];
 
-        Object
-            .keys(object)
-            .forEach((key: string) => {
-                const propertyData: any = object[key];
+        Object.keys(object).forEach((key: string) => {
+            const propertyData: any = object[key];
 
-                if (propertyNameList.includes(key) === true) {
-                    delete object[key];
-                } else if (propertyData instanceof Array) {
-                    propertyData.forEach((item: any) => Util.deletePropertyFromObject(item, propertyNameList));
-                } else if (propertyData instanceof Object) {
-                    Util.deletePropertyFromObject(propertyData, propertyNameList);
-                }
-            });
+            if (propertyNameList.includes(key) === true) {
+                delete object[key];
+            } else if (propertyData instanceof Array) {
+                propertyData.forEach((item: any) => Util.deletePropertyFromObject(item, propertyNameList));
+            } else if (propertyData instanceof Object) {
+                Util.deletePropertyFromObject(propertyData, propertyNameList);
+            }
+        });
 
         return object;
     }
@@ -94,7 +91,7 @@ export class Util {
      * @example
      *      let cloneOfObject = Util.clone(obj);
      */
-    public static clone(src: any, renamePropertyName: (keyName: string) => string = null): any {
+    public static clone(src: any, renamePropertyName?: (keyName: string) => string): any {
         if (src === null || typeof src === 'undefined' || typeof src !== 'object') {
             return src;
         }
@@ -114,12 +111,11 @@ export class Util {
         if (src instanceof Object) {
             const objCopy: {[key: string]: any} = {};
 
-            Object.keys(src)
-                .forEach((keyName: string) => {
-                    const name: string = (renamePropertyName !== null) ? renamePropertyName(keyName) : keyName;
+            Object.keys(src).forEach((keyName: string) => {
+                const name: string = renamePropertyName ? renamePropertyName(keyName) : keyName;
 
-                    objCopy[name] = Util.clone(src[keyName], renamePropertyName);
-                });
+                objCopy[name] = Util.clone(src[keyName], renamePropertyName);
+            });
 
             return objCopy;
         }
@@ -142,52 +138,42 @@ export class Util {
      *      Util.toBoolean(undefined);
      *      // false
      */
-    public static toBoolean(value: string | number | boolean): boolean {
-        const normalized: string | number | boolean = (typeof value === 'string')
-            ? value.toLowerCase()
-            : value;
+    public static toBoolean(value: null | undefined | string | number | boolean): boolean {
+        const normalized: null | undefined | string | number | boolean = typeof value === 'string' ? value.toLowerCase() : value;
 
         return !(normalized == null || normalized <= 0 || normalized === 'false' || normalized === 'off');
     }
 
     public static convertDataUsingConversionOptions(data: object, conversionOptions: IConversionOption): void {
-        Object
-            .keys(conversionOptions)
-            .forEach((conversionPropertyName: string) => {
-                if (data.hasOwnProperty(conversionPropertyName)) {
-                    const propertyData: number | string | boolean = data[conversionPropertyName];
-                    const conversionType: ConversionTypeEnum = conversionOptions[conversionPropertyName];
+        Object.keys(conversionOptions).forEach((conversionPropertyName: string) => {
+            if (data.hasOwnProperty(conversionPropertyName)) {
+                const propertyData: number | string | boolean = data[conversionPropertyName];
+                const conversionType: ConversionTypeEnum = conversionOptions[conversionPropertyName];
 
-                    data[conversionPropertyName] = Util.convertDataToConversionType(propertyData, conversionType);
-                } else {
-                    throw new SyntaxError(`Conversion property name "${conversionPropertyName}" does not match a property name on the model.`);
-                }
-            });
+                data[conversionPropertyName] = Util.convertDataToConversionType(propertyData, conversionType);
+            } else {
+                throw new SyntaxError(`Conversion property name "${conversionPropertyName}" does not match a property name on the model.`);
+            }
+        });
     }
 
-    public static convertDataToConversionType(propertyData: string | number | boolean, conversionType: ConversionTypeEnum): string | number | boolean | object {
+    public static convertDataToConversionType(
+        propertyData: null | string | number | boolean,
+        conversionType: ConversionTypeEnum
+    ): null | string | number | boolean | object {
         switch (conversionType) {
             case ConversionTypeEnum.Boolean:
                 return Util.toBoolean(propertyData);
             case ConversionTypeEnum.Float:
-                return (propertyData === null)
-                    ? null
-                    : parseFloat(propertyData as string);
+                return propertyData === null ? null : parseFloat(propertyData as string);
             case ConversionTypeEnum.Number:
-                return (propertyData === null)
-                    ? null
-                    : parseInt(propertyData as string, 10);
+                return propertyData === null ? null : parseInt(propertyData as string, 10);
             case ConversionTypeEnum.String:
-                return (propertyData === null)
-                    ? null
-                    : String(propertyData);
+                return propertyData === null ? null : String(propertyData);
             case ConversionTypeEnum.JSON:
-                return (propertyData == null)
-                    ? null
-                    : JSON.parse(propertyData as string);
+                return propertyData == null ? null : JSON.parse(propertyData as string);
             default:
                 return propertyData;
         }
     }
-
 }
