@@ -318,6 +318,8 @@ export default class CarModel extends BaseModel {
 
 ## Release History
 
+-   2019-02-17 v1.7.0 Update rollup build proccess.
+
 -   2018-12-07 v1.5.2 Add ConversionTypeEnum.JSON to IConvertOption.
 
 -   2018-10-24 v1.5.1 Throw error if conversion property name doesn't match any properties on the model. Add ConversionTypeEnum.String IConvertOption.
