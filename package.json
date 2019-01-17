@@ -1,6 +1,6 @@
 {
   "name": "sjs-base-model",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "BaseModel helps translate data to models",
   "keywords": [
     "base-model",
