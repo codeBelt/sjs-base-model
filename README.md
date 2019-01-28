@@ -318,6 +318,8 @@ export default class CarModel extends BaseModel {
 
 ## Release History
 
+-   2019-01-28 v1.8.2 ConversionTypeEnum.String now coverts objects with JSON.stringify.
+
 -   2019-01-28 v1.8.1 Returns the original data for ConversionTypeEnum.JSON if parse fails.
 
 -   2019-01-17 v1.8.0 Fix issue with webpack builds.

@@ -169,6 +169,10 @@ export class Util {
             case ConversionTypeEnum.Number:
                 return propertyData === null ? null : parseInt(propertyData as string, 10);
             case ConversionTypeEnum.String:
+                if (Util.isObject(propertyData)) {
+                    return JSON.stringify(propertyData);
+                }
+
                 return propertyData === null ? null : String(propertyData);
             case ConversionTypeEnum.JSON:
                 try {
@@ -179,5 +183,19 @@ export class Util {
             default:
                 return propertyData;
         }
+    }
+
+    /**
+     * Check the data is an object with properties.
+     */
+    public static isObjectWithProperties(data: any): boolean {
+        return Util.isObject(data) && Object.keys(data).length > 0;
+    }
+
+    /**
+     * Check if the data is an object.
+     */
+    public static isObject(data: any): boolean {
+        return Boolean(data) && Array.isArray(data) === false && typeof data === 'object';
     }
 }

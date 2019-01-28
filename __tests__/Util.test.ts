@@ -98,6 +98,7 @@ describe('Util', () => {
         expect(Util.convertDataToConversionType(1.11, ConversionTypeEnum.String)).toEqual('1.11');
         expect(Util.convertDataToConversionType(false, ConversionTypeEnum.String)).toEqual('false');
         expect(Util.convertDataToConversionType(null, ConversionTypeEnum.String)).toEqual(null);
+        expect(Util.convertDataToConversionType(json, ConversionTypeEnum.String)).toEqual(JSON.stringify(json));
         expect(Util.convertDataToConversionType('1.11', ConversionTypeEnum.String)).toEqual('1.11'); // should return same
 
         expect(Util.convertDataToConversionType(JSON.stringify(json), ConversionTypeEnum.JSON)).toEqual(json);
@@ -149,5 +150,22 @@ describe('Util', () => {
                 Util.convertDataUsingConversionOptions(data, conversionOptions);
             }).toThrow(SyntaxError);
         });
+    });
+
+    test('Util.isObject', () => {
+        expect(Util.isObject(undefined)).toBeFalsy();
+        expect(Util.isObject(null)).toBeFalsy();
+        expect(Util.isObject(1)).toBeFalsy();
+        expect(Util.isObject('string')).toBeFalsy();
+        expect(Util.isObject([])).toBeFalsy();
+
+        expect(Util.isObject({})).toBeTruthy();
+        expect(Util.isObject(json)).toBeTruthy();
+    });
+
+    test('Util.isObjectWithProperties', () => {
+        expect(Util.isObjectWithProperties({})).toBeFalsy();
+
+        expect(Util.isObjectWithProperties(json)).toBeTruthy();
     });
 });

@@ -241,7 +241,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
     protected _updateData(currentPropertyData: any, passedInDataForProperty: any): any {
         const isBaseModelObject: boolean = this._isBaseModelObject(currentPropertyData);
         const isBaseModelClass: boolean = this._isBaseModelClass(currentPropertyData);
-        const isPassedInDataAnObjectWithProperties: boolean = this._isObjectWithProperties(passedInDataForProperty);
+        const isPassedInDataAnObjectWithProperties: boolean = Util.isObjectWithProperties(passedInDataForProperty);
 
         if (isBaseModelObject === true && isPassedInDataAnObjectWithProperties === true) {
             // Call the update method on th BaseModel object and give it the passed in data.
@@ -292,27 +292,10 @@ export class BaseModel extends BaseObject implements IBaseModel {
     }
 
     /**
-     * Check the data is an object with properties.
-     *
-     * @method _isObjectWithProperties
-     * @param data
-     * @returns {boolean}
-     * @protected
-     */
-    protected _isObjectWithProperties(data: any): boolean {
-        return this._isObject(data) && Object.keys(data).length > 0;
-    }
-
-    /**
      * Check if the data is an object.
-     *
-     * @method _isObject
-     * @param data
-     * @returns {boolean}
-     * @protected
      */
     protected _isObject(data: any, consoleError: boolean = false): boolean {
-        const isObject: boolean = Boolean(data) && Array.isArray(data) === false && typeof data === 'object';
+        const isObject: boolean = Util.isObject(data);
 
         if (isObject === false && consoleError === true) {
             console.error(`Something is wrong! ${this.getClassName()} only allows Objects but "${data}" was passed in.`);
