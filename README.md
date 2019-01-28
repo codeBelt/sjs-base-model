@@ -318,9 +318,11 @@ export default class CarModel extends BaseModel {
 
 ## Release History
 
--   2019-02-17 v1.8.0 Fix issue with webpack builds.
+-   2019-01-28 v1.8.1 Returns the original data for ConversionTypeEnum.JSON if parse fails.
 
--   2019-02-17 v1.7.0 Update rollup build processes.
+-   2019-01-17 v1.8.0 Fix issue with webpack builds.
+
+-   2019-01-17 v1.7.0 Update rollup build processes.
 
 -   2018-12-07 v1.5.2 Add ConversionTypeEnum.JSON to IConvertOption.
 

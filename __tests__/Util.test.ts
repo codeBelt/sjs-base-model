@@ -77,9 +77,9 @@ describe('Util', () => {
 
     test('Util.convertDataToConversionType()', () => {
         expect(Util.convertDataToConversionType(1.02323, ConversionTypeEnum.Number)).toEqual(1);
-        expect(Util.convertDataToConversionType(1, ConversionTypeEnum.Number)).toEqual(1);
         expect(Util.convertDataToConversionType('1', ConversionTypeEnum.Number)).toEqual(1);
         expect(Util.convertDataToConversionType(null, ConversionTypeEnum.Number)).toEqual(null);
+        expect(Util.convertDataToConversionType(1, ConversionTypeEnum.Number)).toEqual(1); // should return same
 
         expect(Util.convertDataToConversionType('1', ConversionTypeEnum.Boolean)).toEqual(true);
         expect(Util.convertDataToConversionType(0, ConversionTypeEnum.Boolean)).toEqual(false);
@@ -87,15 +87,21 @@ describe('Util', () => {
         expect(Util.convertDataToConversionType('FALSE', ConversionTypeEnum.Boolean)).toEqual(false);
         expect(Util.convertDataToConversionType('', ConversionTypeEnum.Boolean)).toEqual(false);
         expect(Util.convertDataToConversionType(null, ConversionTypeEnum.Boolean)).toEqual(false);
+        expect(Util.convertDataToConversionType(false, ConversionTypeEnum.Boolean)).toEqual(false); // should return same
 
         expect(Util.convertDataToConversionType('01.02', ConversionTypeEnum.Float)).toEqual(1.02);
         expect(Util.convertDataToConversionType(1, ConversionTypeEnum.Float)).toEqual(1);
         expect(Util.convertDataToConversionType(2222.22222222, ConversionTypeEnum.Float)).toEqual(2222.22222222);
         expect(Util.convertDataToConversionType(null, ConversionTypeEnum.Float)).toEqual(null);
+        expect(Util.convertDataToConversionType(1.02, ConversionTypeEnum.Float)).toEqual(1.02); // should return same
 
         expect(Util.convertDataToConversionType(1.11, ConversionTypeEnum.String)).toEqual('1.11');
         expect(Util.convertDataToConversionType(false, ConversionTypeEnum.String)).toEqual('false');
         expect(Util.convertDataToConversionType(null, ConversionTypeEnum.String)).toEqual(null);
+        expect(Util.convertDataToConversionType('1.11', ConversionTypeEnum.String)).toEqual('1.11'); // should return same
+
+        expect(Util.convertDataToConversionType(JSON.stringify(json), ConversionTypeEnum.JSON)).toEqual(json);
+        expect(Util.convertDataToConversionType(json, ConversionTypeEnum.JSON)).toEqual(json); // should return same
     });
 
     describe('Util.convertDataUsingConversionOptions()', () => {

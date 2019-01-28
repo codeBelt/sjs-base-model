@@ -171,7 +171,11 @@ export class Util {
             case ConversionTypeEnum.String:
                 return propertyData === null ? null : String(propertyData);
             case ConversionTypeEnum.JSON:
-                return propertyData == null ? null : JSON.parse(propertyData as string);
+                try {
+                    return JSON.parse(propertyData as string);
+                } catch (error) {
+                    return propertyData;
+                }
             default:
                 return propertyData;
         }
