@@ -286,7 +286,7 @@ export default class CarModel extends BaseModel {
 
 I like to keep my data consistent in my applications. So I like everything to be `camelCase`. It's hard when dealing with different data api's. Each one can return a different case type (`kebab-case`, `snake_case`, `PascalCase`, `camelCase`, `UPPER_CASE` and this one `@propertyName`).
 
-What you can do is create a utility class that normalizes the data coming in. See the [PropertyNormalizerUtility](https://gist.github.com/codeBelt/5ae6ff9474340a77e2ab4abbb9204aba) example for ideas.
+What you can do is create a utility class that normalizes the data coming in. See the [PropertyNormalizerUtility](https://gist.github.com/codeBelt/ddd3432af63847274348fcf62482ebaa) example for ideas.
 
 ## BaseModel Expand Scaffolding
 
