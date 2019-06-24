@@ -6,6 +6,7 @@ import {UserResponseModel} from './data/models/UserResponseModel';
 import {ConversionInfoModel} from './data/models/ConversionInfoModel';
 import {NonExistentKeyConversionModel} from './data/models/NonExistentKeyConversionModel';
 import {NameModel} from './data/models/NameModel';
+import {AdminModel} from './data/models/AdminModel';
 
 describe('BaseModel', () => {
     let json: any = null;
@@ -26,7 +27,24 @@ describe('BaseModel', () => {
     test('should populate InfoModel', () => {
         const model = new InfoModel(json.info);
 
-        expect(model.toJSON()).toEqual(json.info);
+        expect(model.toJSON()).toEqual({
+            ...json.info,
+            stringified: JSON.parse(json.info.stringified),
+        });
+        expect(model.stringified).toBeInstanceOf(AdminModel);
+    });
+
+    test('should have default of InfoModel', () => {
+        const model = new InfoModel();
+
+        expect(model.toJSON()).toEqual({
+            page: null,
+            results: null,
+            seed: '',
+            stringified: null,
+            version: '',
+        });
+        expect(model.stringified).toEqual(null);
     });
 
     test('should have default of UserResponseModel', () => {
@@ -86,6 +104,10 @@ describe('BaseModel', () => {
             results: json.results.map((resultItem: any) =>
                 Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
             ),
+            info: {
+                ...json.info,
+                stringified: JSON.parse(json.info.stringified),
+            },
         };
 
         expect(model.toJSON()).toEqual(expectedData);
@@ -93,12 +115,15 @@ describe('BaseModel', () => {
 
     test('should call update with empty object and have no changes', () => {
         const model = new UserResponseModel(json);
-
         const expectedData = {
             ...json,
             results: json.results.map((resultItem: any) =>
                 Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
             ),
+            info: {
+                ...json.info,
+                stringified: JSON.parse(json.info.stringified),
+            },
         };
 
         model.update({});
@@ -108,6 +133,7 @@ describe('BaseModel', () => {
 
     test('should have populate UserResponseModel from same UserResponseModel', () => {
         let model = new UserResponseModel(json);
+
         model = new UserResponseModel(model);
 
         const expectedData = {
@@ -115,6 +141,10 @@ describe('BaseModel', () => {
             results: json.results.map((resultItem: any) =>
                 Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
             ),
+            info: {
+                ...json.info,
+                stringified: JSON.parse(json.info.stringified),
+            },
         };
 
         expect(model.toJSON()).toEqual(expectedData);
@@ -153,6 +183,10 @@ describe('BaseModel', () => {
                     },
                 },
             ],
+            info: {
+                ...json.info,
+                stringified: JSON.parse(json.info.stringified),
+            },
         });
     });
 
@@ -193,6 +227,12 @@ describe('BaseModel', () => {
                 results: null,
                 page: null,
                 version: '',
+                stringified: {
+                    description: '',
+                    id: '',
+                    name: '',
+                    userCount: 0,
+                },
             },
             results: [],
             resultsAny: [],

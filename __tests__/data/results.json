@@ -121,6 +121,7 @@
     "seed": "abc",
     "results": 3,
     "page": 1,
-    "version": "1.1"
+    "version": "1.1",
+    "stringified": "{\"id\":\"fb55b892-65c6-4a2f-9ce1-13ddb3ad6d98\",\"name\":\"Admin\",\"description\":\"Administrator\",\"userCount\":0}"
   }
 }

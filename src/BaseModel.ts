@@ -3,6 +3,7 @@ import {IBaseModelOptions} from './IBaseModelOptions';
 import {IBaseModel} from './IBaseModel';
 import {IConversionOption} from './IConversionOption';
 import {Util} from './Util';
+import {ConversionTypeEnum} from './ConversionTypeEnum';
 
 /**
  *  Base Model is a design pattern used to transfer data between software application subsystems.
@@ -113,17 +114,23 @@ export class BaseModel extends BaseObject implements IBaseModel {
     public update(data: any = {}, conversionOptions: IConversionOption = {}): any {
         const dataToUse: {[propertyName: string]: any} = this._isObject(data, true) ? data : {};
 
+        Util.validConversionOptionNames(this, conversionOptions);
+
         Object.keys(this).forEach((propertyName: string) => {
             // Ignore the sjsId property because it is set in the BaseObject constructor and we don't want to update it.
             if (propertyName !== 'sjsId' && propertyName !== 'sjsOptions') {
                 const currentPropertyData: any = this[propertyName];
-                const passedInDataForProperty: any = dataToUse[propertyName];
+                let passedInDataForProperty: any = dataToUse[propertyName];
+
+                if (Boolean(conversionOptions[propertyName])) {
+                    const conversionType: ConversionTypeEnum = conversionOptions[propertyName];
+
+                    passedInDataForProperty = Util.convertDataToConversionType(passedInDataForProperty, conversionType);
+                }
 
                 this[propertyName] = this._getPropertyData(currentPropertyData, passedInDataForProperty);
             }
         });
-
-        Util.convertDataUsingConversionOptions(this, conversionOptions);
 
         return this;
     }
