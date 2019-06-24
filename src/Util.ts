@@ -144,14 +144,9 @@ export class Util {
         return !(normalized == null || normalized <= 0 || normalized === 'false' || normalized === 'off');
     }
 
-    public static convertDataUsingConversionOptions(data: object, conversionOptions: IConversionOption): void {
+    public static validConversionOptionNames(data: object, conversionOptions: IConversionOption = {}): void {
         Object.keys(conversionOptions).forEach((conversionPropertyName: string) => {
-            if (data.hasOwnProperty(conversionPropertyName)) {
-                const propertyData: number | string | boolean = data[conversionPropertyName];
-                const conversionType: ConversionTypeEnum = conversionOptions[conversionPropertyName];
-
-                data[conversionPropertyName] = Util.convertDataToConversionType(propertyData, conversionType);
-            } else {
+            if (data.hasOwnProperty(conversionPropertyName) === false) {
                 throw new SyntaxError(`Conversion property name "${conversionPropertyName}" does not match a property name on the model.`);
             }
         });
@@ -178,6 +173,10 @@ export class Util {
                 try {
                     return JSON.parse(propertyData as string);
                 } catch (error) {
+                    // Don't throw or console.log errors because it's by design to return the data on error.
+                    // For example the first time the model is created it needs to parse the data but if the
+                    // models update method is called we want to keep the data the same.
+
                     return propertyData;
                 }
             default:

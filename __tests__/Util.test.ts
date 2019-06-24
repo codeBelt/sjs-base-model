@@ -105,39 +105,7 @@ describe('Util', () => {
         expect(Util.convertDataToConversionType(json, ConversionTypeEnum.JSON)).toEqual(json); // should return same
     });
 
-    describe('Util.convertDataUsingConversionOptions()', () => {
-        test('Should convert data types', () => {
-            const data: object = {
-                stringToFloat: '23.345',
-                stringToNumber: '23.345',
-                stringToFalse: '0',
-                stringToTrue: '1',
-                noChange: '8',
-                numberToString: 8,
-                stringToJson: '{"complete":"Complete","new":"New","open":"Open"}',
-            };
-            const conversionOptions: IConversionOption = {
-                stringToFloat: ConversionTypeEnum.Float,
-                stringToNumber: ConversionTypeEnum.Number,
-                stringToFalse: ConversionTypeEnum.Boolean,
-                stringToTrue: ConversionTypeEnum.Boolean,
-                numberToString: ConversionTypeEnum.String,
-                stringToJson: ConversionTypeEnum.JSON,
-            };
-
-            Util.convertDataUsingConversionOptions(data, conversionOptions);
-
-            expect(data).toEqual({
-                stringToFloat: 23.345,
-                stringToNumber: 23,
-                stringToFalse: false,
-                stringToTrue: true,
-                noChange: '8',
-                numberToString: '8',
-                stringToJson: {complete: 'Complete', new: 'New', open: 'Open'},
-            });
-        });
-
+    describe('Util.validConversionOptionNames()', () => {
         test('should throw error on non existent key', () => {
             const data: any = {
                 something: '',
@@ -147,7 +115,7 @@ describe('Util', () => {
             };
 
             expect(() => {
-                Util.convertDataUsingConversionOptions(data, conversionOptions);
+                Util.validConversionOptionNames(data, conversionOptions);
             }).toThrow(SyntaxError);
         });
     });

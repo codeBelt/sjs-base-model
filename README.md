@@ -318,6 +318,8 @@ export default class CarModel extends BaseModel {
 
 ## Release History
 
+-   2019-06-23 v1.9.0 IConvertOption now happens before data is assigned to properties. Now if you use ConversionTypeEnum.JSON and have a default model it will create that new model instead of having a plain object.
+
 -   2019-01-28 v1.8.2 ConversionTypeEnum.String now coverts objects with JSON.stringify.
 
 -   2019-01-28 v1.8.1 Returns the original data for ConversionTypeEnum.JSON if parse fails.
