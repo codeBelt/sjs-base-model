@@ -61,6 +61,10 @@ export class Util {
      *      // { name: 'Robert' }
      */
     public static deletePropertyFromObject(object: any, value: string | string[]): any {
+        if (!Util.isObject(object)) {
+            return object;
+        }
+
         // If properties is not an array then make it an array object.
         const propertyNameList: any = value instanceof Array ? value : [value];
 
@@ -71,7 +75,7 @@ export class Util {
                 delete object[key];
             } else if (propertyData instanceof Array) {
                 propertyData.forEach((item: any) => Util.deletePropertyFromObject(item, propertyNameList));
-            } else if (propertyData instanceof Object) {
+            } else if (Util.isObject(propertyData)) {
                 Util.deletePropertyFromObject(propertyData, propertyNameList);
             }
         });

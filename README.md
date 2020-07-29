@@ -320,6 +320,8 @@ export default class CarModel extends BaseModel {
 
 ## Release History
 
+-   2020-07-29 v1.9.1 Fix deletePropertyFromObject bug; If null was inside an array would cause the code to break.
+
 -   2019-06-23 v1.9.0 IConvertOption now happens before data is assigned to properties. Now if you use ConversionTypeEnum.JSON and have a default model it will create that new model instead of having a plain object.
 
 -   2019-01-28 v1.8.2 ConversionTypeEnum.String now coverts objects with JSON.stringify.

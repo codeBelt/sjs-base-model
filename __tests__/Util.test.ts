@@ -24,8 +24,18 @@ describe('Util', () => {
     });
 
     test('Util.deletePropertyFromObject()', () => {
-        const obj: any = {name: 'Robert', gender: 'male', phone: '555-555-5555'};
-        const expected: any = {name: 'Robert'};
+        const obj: any = {
+            name: 'Robert',
+            gender: 'male',
+            phone: '555-555-5555',
+            nested: {name: 'Robert', gender: 'male', phone: '555-555-5555'},
+            arrayWithNullAlso: [{name: 'Robert', gender: 'male', phone: '555-555-5555'}, null, 0, 'one', true],
+        };
+        const expected: any = {
+            name: 'Robert',
+            nested: {name: 'Robert'},
+            arrayWithNullAlso: [{name: 'Robert'}, null, 0, 'one', true],
+        };
         const actual: any = Util.deletePropertyFromObject(obj, ['phone', 'gender']);
 
         expect(expected).toEqual(actual);
