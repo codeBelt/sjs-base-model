@@ -8,7 +8,7 @@
 
 BaseModel helps translate data to models
 
-Check out this Medium article to get an overview - [Protect Your JavaScript Applications from Api Data](https://medium.com/@robertsavian/protect-your-javascript-applications-from-api-data-401a73c7c80b)
+Check out this Medium article to get an overview - [Protect Your JavaScript Applications from Api Data](https://medium.com/swlh/protect-your-javascript-applications-from-api-data-401a73c7c80b)
 
 ## Install
 
