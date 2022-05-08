@@ -3,9 +3,9 @@
  * @interface
  */
 export interface IBaseModelOptions {
-    /**
-     * @property expand
-     * @type {boolean}
-     */
-    expand?: boolean;
+  /**
+   * @property expand
+   * @type {boolean}
+   */
+  expand?: boolean;
 }
