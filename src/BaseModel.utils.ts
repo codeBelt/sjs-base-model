@@ -1,5 +1,5 @@
-import { ConversionTypeEnum } from './ConversionTypeEnum';
-import { IConversionOption } from './IConversionOption';
+import { ConversionTypeEnum } from './BaseModel.constants';
+import { IConversionOption } from './BaseModel.types';
 
 /**
  * A Utility class that has several static methods to assist in development.

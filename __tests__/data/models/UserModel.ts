@@ -1,7 +1,7 @@
-import { IBaseModelOptions } from '../../../src/IBaseModelOptions';
 import { NameModel } from './NameModel';
 import { PictureModel } from './PictureModel';
 import { BaseModel } from '../../../src';
+import { IBaseModelOptions } from '../../../src/BaseModel.types';
 
 export class UserModel extends BaseModel {
   public gender: string = '';

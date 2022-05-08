@@ -1,4 +1,4 @@
-import { Util } from './Util';
+import { Util } from './BaseModel.utils';
 
 /**
  * The {{#crossLink "BaseObject"}}{{/crossLink}} class is an abstract class that provides common properties and functionality for all StructureJS classes.

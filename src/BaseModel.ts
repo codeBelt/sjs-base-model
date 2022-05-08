@@ -1,9 +1,7 @@
 import { BaseObject } from './BaseObject';
-import { IBaseModelOptions } from './IBaseModelOptions';
-import { IBaseModel } from './IBaseModel';
-import { IConversionOption } from './IConversionOption';
-import { Util } from './Util';
-import { ConversionTypeEnum } from './ConversionTypeEnum';
+import { Util } from './BaseModel.utils';
+import { ConversionTypeEnum } from './BaseModel.constants';
+import { BaseModelToJsonOmit, IBaseModel, IBaseModelOptions, IConversionOption } from './BaseModel.types';
 
 /**
  *  Base Model is a design pattern used to transfer data between software application subsystems.
@@ -144,7 +142,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
    * @example
    *     const obj = carModel.toJSON();
    */
-  public toJSON(): any {
+  public toJSON(): BaseModelToJsonOmit<this> {
     const clone: any = Util.clone(this);
 
     return Util.deletePropertyFromObject(clone, ['sjsId', 'sjsOptions']);

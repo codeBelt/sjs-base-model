@@ -1,5 +1,5 @@
-import { IBaseModelOptions } from '../../../src/IBaseModelOptions';
 import { BaseModel } from '../../../src';
+import { IBaseModelOptions } from '../../../src/BaseModel.types';
 
 export class NameModel extends BaseModel {
   public title: string = '';

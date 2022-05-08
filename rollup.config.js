@@ -31,12 +31,12 @@ export default [
       {
         file: pkg.main,
         format: 'cjs',
-        sourceMap: true,
+        sourcemap: true,
       },
       {
         file: pkg.module,
         format: 'es',
-        sourceMap: true,
+        sourcemap: true,
       },
     ],
   },

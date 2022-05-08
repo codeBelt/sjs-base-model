@@ -1,7 +1,6 @@
-import { IBaseModelOptions } from '../../../src/IBaseModelOptions';
-import { IConversionOption } from '../../../src/IConversionOption';
 import { BaseModel, ConversionTypeEnum } from '../../../src';
 import { AdminModel } from './AdminModel';
+import { IBaseModelOptions, IConversionOption } from '../../../src/BaseModel.types';
 
 export class InfoModel extends BaseModel {
   public seed: string = '';

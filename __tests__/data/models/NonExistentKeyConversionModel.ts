@@ -1,5 +1,5 @@
-import { IBaseModelOptions } from '../../../src/IBaseModelOptions';
 import { BaseModel, ConversionTypeEnum, IConversionOption } from '../../../src';
+import { IBaseModelOptions } from '../../../src/BaseModel.types';
 
 export class NonExistentKeyConversionModel extends BaseModel {
   public something: string = '';
