@@ -3,7 +3,7 @@ import { ConversionTypeEnum } from './BaseModel.constants';
 
 export interface IBaseModel {
   update(data: this): this;
-  toJSON(): BaseModelToJsonOmit<this>;
+  toJSON(): BaseModelToJson<this>;
   toJSONString(): string;
   fromJSON(json: string): this;
   clone(): IBaseModel;
@@ -17,4 +17,4 @@ export interface IConversionOption {
   [propertyName: string]: ConversionTypeEnum;
 }
 
-export type BaseModelToJsonOmit<T> = Omit<T, Exclude<keyof IBaseModel, T> | 'sjsOptions' | keyof BaseObject>;
+export type BaseModelToJson<T> = Omit<T, Exclude<keyof IBaseModel, T> | 'sjsOptions' | keyof BaseObject>;
