@@ -1,5 +1,5 @@
 {
-  "resultsAny": [{"test": "it"}],
+  "resultsAny": [{ "test": "it" }],
   "singleStringToArray": ["male"],
   "nullToArray": [],
   "zeroToArray": [0],

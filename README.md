@@ -20,14 +20,17 @@ With [Node.js](http://nodejs.org):
 
 ```javascript
 const apiData = {
-    make: 'Tesla',
-    model: 'Model S',
-    YeAr: 2014,
-    feature: {
-        abs: true,
-        airbags: true,
-    },
-    colors: [{id: 'red', name: 'Red'}, {id: 'white', name: 'White'}],
+  make: 'Tesla',
+  model: 'Model S',
+  YeAr: 2014,
+  feature: {
+    abs: true,
+    airbags: true,
+  },
+  colors: [
+    { id: 'red', name: 'Red' },
+    { id: 'white', name: 'White' },
+  ],
 };
 ```
 
@@ -38,64 +41,64 @@ const carModel = new CarModel(apiData);
 This is how you should extend `sjs-base-model`
 
 ```javascript
-import {BaseModel} from 'sjs-base-model';
+import { BaseModel } from 'sjs-base-model';
 
 export default class CarModel extends BaseModel {
-    make = '';
-    model = '';
-    year = null;
-    feature = FeatureModel;
-    colors = [ColorModel];
+  make = '';
+  model = '';
+  year = null;
+  feature = FeatureModel;
+  colors = [ColorModel];
 
-    constructor(data) {
-        super();
+  constructor(data) {
+    super();
 
-        this.update(data);
-    }
+    this.update(data);
+  }
 
-    update(data) {
-        super.update(data);
+  update(data) {
+    super.update(data);
 
-        this.year = data.YeAr;
-    }
+    this.year = data.YeAr;
+  }
 }
 ```
 
 Model Explained
 
 ```javascript
-import {BaseModel} from 'sjs-base-model';
+import { BaseModel } from 'sjs-base-model';
 
 export default class CarModel extends BaseModel {
-    // The class properties must match the data properties being passed in. Otherwise they will be ignored
-    make = '';
-    model = '';
-    year = null;
+  // The class properties must match the data properties being passed in. Otherwise they will be ignored
+  make = '';
+  model = '';
+  year = null;
 
-    // If data passed in is an object then a FeatureModel will be created
-    // else the property will be set to null
-    feature = FeatureModel;
+  // If data passed in is an object then a FeatureModel will be created
+  // else the property will be set to null
+  feature = FeatureModel;
 
-    // If the data passed is an array then it will create a ColorModel for each item
-    // else the property will be set to an empty array
-    colors = [ColorModel];
+  // If the data passed is an array then it will create a ColorModel for each item
+  // else the property will be set to an empty array
+  colors = [ColorModel];
 
-    constructor(data) {
-        super();
+  constructor(data) {
+    super();
 
-        this.update(data);
-    }
+    this.update(data);
+  }
 
-    update(data) {
-        super.update(data);
+  update(data) {
+    super.update(data);
 
-        // If the data doesn't match the property name
-        // You can set the value(s) manually after the update super method has been called.
-        this.year = data.YeAr;
+    // If the data doesn't match the property name
+    // You can set the value(s) manually after the update super method has been called.
+    this.year = data.YeAr;
 
-        // Check out PropertyNormalizerUtility example below on how to normalize you data to
-        // match the properties so you don't need to do it manually.
-    }
+    // Check out PropertyNormalizerUtility example below on how to normalize you data to
+    // match the properties so you don't need to do it manually.
+  }
 }
 ```
 
@@ -119,33 +122,33 @@ const model = new SomeModel(json);
 JavaScript Version
 
 ```javascript
-import {BaseModel, ConversionTypeEnum} from 'sjs-base-model';
+import { BaseModel, ConversionTypeEnum } from 'sjs-base-model';
 
 export default class SomeModel extends BaseModel {
-    seed = '';
-    results = false; // Previously string; converted to boolean by IConversionOption
-    page = null; // Previously string; converted to number by IConversionOption
-    version = null; // Previously string; converted to float by IConversionOption
-    value = ''; // Previously number; converted to string by IConversionOption
-    statuses = null; // Previously string; converted to JSON by IConversionOption
+  seed = '';
+  results = false; // Previously string; converted to boolean by IConversionOption
+  page = null; // Previously string; converted to number by IConversionOption
+  version = null; // Previously string; converted to float by IConversionOption
+  value = ''; // Previously number; converted to string by IConversionOption
+  statuses = null; // Previously string; converted to JSON by IConversionOption
 
-    constructor(data) {
-        super();
+  constructor(data) {
+    super();
 
-        this.update(data);
-    }
+    this.update(data);
+  }
 
-    update(data) {
-        const conversionOptions = {
-            results: ConversionTypeEnum.Boolean,
-            page: ConversionTypeEnum.Number,
-            version: ConversionTypeEnum.Float,
-            value: ConversionTypeEnum.String,
-            statuses: ConversionTypeEnum.JSON,
-        };
+  update(data) {
+    const conversionOptions = {
+      results: ConversionTypeEnum.Boolean,
+      page: ConversionTypeEnum.Number,
+      version: ConversionTypeEnum.Float,
+      value: ConversionTypeEnum.String,
+      statuses: ConversionTypeEnum.JSON,
+    };
 
-        super.update(data, conversionOptions);
-    }
+    super.update(data, conversionOptions);
+  }
 }
 ```
 
@@ -217,7 +220,7 @@ constructor(data) {
 Example how to use the `update` method which will only change the property value(s) that were passed in.
 
 ```javascript
-carModel.update({year: 2015, feature: {abs: true}});
+carModel.update({ year: 2015, feature: { abs: true } });
 ```
 
 #### toJSON()
@@ -259,28 +262,28 @@ const clone = carModel.clone();
 You will need to use `as any` when assigning the function model to the type of model so the compiler doesn't complain. Notice `FeatureModel as any;` and `[ColorModel as any];`
 
 ```typescript
-import {BaseModel} from 'sjs-base-model';
+import { BaseModel } from 'sjs-base-model';
 
 export default class CarModel extends BaseModel {
-    make: string = '';
-    model: string = '';
-    year: number = null;
+  make: string = '';
+  model: string = '';
+  year: number = null;
 
-    feature: FeatureModel = FeatureModel as any;
+  feature: FeatureModel = FeatureModel as any;
 
-    colors: ColorModel[] = [ColorModel as any];
+  colors: ColorModel[] = [ColorModel as any];
 
-    constructor(data: Partial<CarModel>) {
-        super();
+  constructor(data: Partial<CarModel>) {
+    super();
 
-        this.update(data);
-    }
+    this.update(data);
+  }
 
-    update(data: Partial<CarModel>): void {
-        super.update(data);
+  update(data: Partial<CarModel>): void {
+    super.update(data);
 
-        this.year = data.YeAr;
-    }
+    this.year = data.YeAr;
+  }
 }
 ```
 
@@ -295,59 +298,59 @@ What you can do is create a utility class that normalizes the data coming in. Se
 If you pass `{expand: true}` into the `super` method of the class constructor. It will create empty models for you but only if they extend `BaseModel`. If you look at the example below. Notice the `feature` property. If no data or `null` was passed in for `feature` it will instantiate the `FeatureModel` and you will end up with an empty model. Basically you always have a `FeatureModel` assigned to `feature`. This can be useful if needed.
 
 ```javascript
-import {BaseModel} from 'sjs-base-model';
+import { BaseModel } from 'sjs-base-model';
 
 export default class CarModel extends BaseModel {
-    make = '';
-    model = '';
-    year = null;
-    feature = FeatureModel; // This will be an empty FeatureModel if no data is passed in
-    colors = [ColorModel]; // This will be an empty array
+  make = '';
+  model = '';
+  year = null;
+  feature = FeatureModel; // This will be an empty FeatureModel if no data is passed in
+  colors = [ColorModel]; // This will be an empty array
 
-    constructor(data) {
-        super({expand: true}); // Notice sjsOptions
+  constructor(data) {
+    super({ expand: true }); // Notice sjsOptions
 
-        this.update(data);
-    }
+    this.update(data);
+  }
 
-    update(data) {
-        super.update(data);
+  update(data) {
+    super.update(data);
 
-        this.year = data.YeAr;
-    }
+    this.year = data.YeAr;
+  }
 }
 ```
 
 ## Release History
 
--   2020-07-29 v1.9.1 Fix deletePropertyFromObject bug; If null was inside an array would cause the code to break.
+- 2020-07-29 v1.9.1 Fix deletePropertyFromObject bug; If null was inside an array would cause the code to break.
 
--   2019-06-23 v1.9.0 IConvertOption now happens before data is assigned to properties. Now if you use ConversionTypeEnum.JSON and have a default model it will create that new model instead of having a plain object.
+- 2019-06-23 v1.9.0 IConvertOption now happens before data is assigned to properties. Now if you use ConversionTypeEnum.JSON and have a default model it will create that new model instead of having a plain object.
 
--   2019-01-28 v1.8.2 ConversionTypeEnum.String now coverts objects with JSON.stringify.
+- 2019-01-28 v1.8.2 ConversionTypeEnum.String now coverts objects with JSON.stringify.
 
--   2019-01-28 v1.8.1 Returns the original data for ConversionTypeEnum.JSON if parse fails.
+- 2019-01-28 v1.8.1 Returns the original data for ConversionTypeEnum.JSON if parse fails.
 
--   2019-01-17 v1.8.0 Fix issue with webpack builds.
+- 2019-01-17 v1.8.0 Fix issue with webpack builds.
 
--   2019-01-17 v1.7.0 Update rollup build processes.
+- 2019-01-17 v1.7.0 Update rollup build processes.
 
--   2018-12-07 v1.5.2 Add ConversionTypeEnum.JSON to IConvertOption.
+- 2018-12-07 v1.5.2 Add ConversionTypeEnum.JSON to IConvertOption.
 
--   2018-10-24 v1.5.1 Throw error if conversion property name doesn't match any properties on the model. Add ConversionTypeEnum.String IConvertOption.
+- 2018-10-24 v1.5.1 Throw error if conversion property name doesn't match any properties on the model. Add ConversionTypeEnum.String IConvertOption.
 
--   2018-05-09 v1.5.0 Rename IConvertOption to IConversionOption to match with ConversionTypeEnum
+- 2018-05-09 v1.5.0 Rename IConvertOption to IConversionOption to match with ConversionTypeEnum
 
--   2018-04-20 v1.4.0 Add the ability to convert property values to ConversionTypeEnum.Float, ConversionTypeEnum.Number or ConversionTypeEnum.Boolean with IConvertOption.
+- 2018-04-20 v1.4.0 Add the ability to convert property values to ConversionTypeEnum.Float, ConversionTypeEnum.Number or ConversionTypeEnum.Boolean with IConvertOption.
 
--   2018-04-15 v1.3.2 Make the clone method a Generic TypeScript type. `model.clone<SomeModel>();`
+- 2018-04-15 v1.3.2 Make the clone method a Generic TypeScript type. `model.clone<SomeModel>();`
 
--   2018-04-10 v1.3.1 Update to previous version (v1.3.0) to allow other types not just objects. Now will add number, string, etc.
+- 2018-04-10 v1.3.1 Update to previous version (v1.3.0) to allow other types not just objects. Now will add number, string, etc.
 
--   2018-03-29 v1.3.0 If the default property value is an array and a object is passed for that property. It will put that object into an array.
+- 2018-03-29 v1.3.0 If the default property value is an array and a object is passed for that property. It will put that object into an array.
 
--   2018-03-20 v1.2.0 Handle null being passed in and console.error message. Remove null check condition from constructor in code examples.
+- 2018-03-20 v1.2.0 Handle null being passed in and console.error message. Remove null check condition from constructor in code examples.
 
--   2018-03-05 v1.1.0 Fixed issue: If an array of data passed in with no BaseModel assigned. It would set it as an empty array. Now it will assign the raw array data correctly.
+- 2018-03-05 v1.1.0 Fixed issue: If an array of data passed in with no BaseModel assigned. It would set it as an empty array. Now it will assign the raw array data correctly.
 
--   2018-02-24 v1.0.0
+- 2018-02-24 v1.0.0
