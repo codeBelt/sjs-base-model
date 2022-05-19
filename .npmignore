@@ -1,11 +1,12 @@
-node_modules
-.rpt2_cache
-__tests__
 .editorconfig
+.eslintignore
+.eslintrc.js
 .npmrc
 .nvmrc
+.rpt2_cache
 .yarnrc
+__tests__
+node_modules
 rollup.config.js
 tsconfig.json
-tslint.json
 yarn.lock
