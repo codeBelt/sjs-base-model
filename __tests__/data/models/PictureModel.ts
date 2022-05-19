@@ -1,5 +1,4 @@
-import { BaseModel } from '../../../src';
-import { IBaseModelOptions } from '../../../src/BaseModel.types';
+import { BaseModel, IBaseModelOptions } from '../../../src';
 
 export class PictureModel extends BaseModel {
   public large: string = '';
@@ -10,9 +9,5 @@ export class PictureModel extends BaseModel {
     super(opts);
 
     this.update(data);
-  }
-
-  public update(data: Partial<PictureModel>): void {
-    super.update(data);
   }
 }

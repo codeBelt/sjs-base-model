@@ -9,23 +9,20 @@ import { NameModel } from './data/models/NameModel';
 import { AdminModel } from './data/models/AdminModel';
 
 describe('BaseModel', () => {
-  let json: any = null;
+  let json = data;
 
   beforeEach(() => {
-    json = Util.clone(data as any);
-  });
-
-  afterEach(() => {
-    json = null;
+    json = Util.clone(data);
   });
 
   test('update returns itself', () => {
     const baseModel = new BaseModel();
+
     expect(baseModel.update()).toEqual(baseModel);
   });
 
   test('should populate InfoModel', () => {
-    const model = new InfoModel(json.info);
+    const model = new InfoModel(json.info as any);
 
     expect(model.toJSON()).toEqual({
       ...json.info,
@@ -52,16 +49,14 @@ describe('BaseModel', () => {
 
     expect(model.info).toEqual(null);
     expect(model.results).toEqual([]);
-    expect(model.sjsOptions).toEqual({ expand: false });
   });
 
   test('should clone and not mutate data', () => {
-    const model = new UserResponseModel(json);
-    const clone = model.clone<UserResponseModel>();
+    const model = new UserResponseModel(json as any);
+    const clone = model.clone();
 
     clone.info.version = '888';
 
-    expect(model.info.sjsId).not.toEqual(clone.info.sjsId);
     expect(model.info).not.toEqual(clone.info);
     expect(model.toJSON()).not.toEqual(clone.toJSON());
   });
@@ -87,23 +82,31 @@ describe('BaseModel', () => {
   });
 
   test('should have default of UserResponseModel with null passed in', () => {
-    console.error('Ignore the "Something is wrong!" errors. They are expected.');
+    const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     const model = new UserResponseModel(null as any);
 
     expect(model.info).toEqual(null);
     expect(model.results).toEqual([]);
-    expect(model.sjsOptions).toEqual({ expand: false });
+    expect(consoleError).toBeCalledWith(
+      'Something is wrong! UserResponseModel only allows Objects but "null" was passed in.'
+    );
+
+    consoleError.mockReset();
   });
 
   test('should have populate UserResponseModel', () => {
-    const model = new UserResponseModel(json);
+    const model = new UserResponseModel(json as any);
 
     const expectedData = {
       ...json,
-      results: json.results.map((resultItem: any) =>
-        Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
-      ),
+      results: json.results.map((resultItem) => ({
+        gender: resultItem.gender,
+        name: resultItem.name,
+        picture: resultItem.picture,
+        email: resultItem.email,
+        nat: resultItem.nat,
+      })),
       info: {
         ...json.info,
         stringified: JSON.parse(json.info.stringified),
@@ -114,12 +117,16 @@ describe('BaseModel', () => {
   });
 
   test('should call update with empty object and have no changes', () => {
-    const model = new UserResponseModel(json);
+    const model = new UserResponseModel(json as any);
     const expectedData = {
       ...json,
-      results: json.results.map((resultItem: any) =>
-        Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
-      ),
+      results: json.results.map((resultItem) => ({
+        gender: resultItem.gender,
+        name: resultItem.name,
+        picture: resultItem.picture,
+        email: resultItem.email,
+        nat: resultItem.nat,
+      })),
       info: {
         ...json.info,
         stringified: JSON.parse(json.info.stringified),
@@ -132,15 +139,19 @@ describe('BaseModel', () => {
   });
 
   test('should have populate UserResponseModel from same UserResponseModel', () => {
-    let model = new UserResponseModel(json);
+    let model = new UserResponseModel(json as any);
 
     model = new UserResponseModel(model);
 
     const expectedData = {
       ...json,
-      results: json.results.map((resultItem: any) =>
-        Util.deletePropertyFromObject(resultItem, ['location', 'login', 'dob', 'registered', 'phone', 'cell', 'id'])
-      ),
+      results: json.results.map((resultItem) => ({
+        gender: resultItem.gender,
+        name: resultItem.name,
+        picture: resultItem.picture,
+        email: resultItem.email,
+        nat: resultItem.nat,
+      })),
       info: {
         ...json.info,
         stringified: JSON.parse(json.info.stringified),
@@ -151,7 +162,7 @@ describe('BaseModel', () => {
   });
 
   test('should update email results to one item in the array', () => {
-    const model = new UserResponseModel(json);
+    const model = new UserResponseModel(json as any);
 
     expect(model.results.length).toBe(3);
 
@@ -192,27 +203,22 @@ describe('BaseModel', () => {
 
   test('should populate UserModel', () => {
     const theData = json.results[0];
-    const model = new UserModel(theData);
+    const model = new UserModel(theData as any);
 
-    // const hey = model.toJSON()
-    // hey.
-
-    const expectedData = Util.deletePropertyFromObject(theData, [
-      'location',
-      'login',
-      'dob',
-      'registered',
-      'phone',
-      'cell',
-      'id',
-    ]);
+    const expectedData = {
+      gender: theData.gender,
+      name: theData.name,
+      picture: theData.picture,
+      email: theData.email,
+      nat: theData.nat,
+    };
 
     expect(model.toJSON()).toEqual(expectedData);
   });
 
   test('should update UserModel', () => {
     const theData = json.results[0];
-    const model = new UserModel(theData);
+    const model = new UserModel(theData as any);
 
     expect(model.email).toBe(theData.email);
     expect(model.name.last).toBe(theData.name.last);
@@ -257,18 +263,19 @@ describe('BaseModel', () => {
     expect(model.toJSON()).toEqual(expected);
   });
 
-  test('should test isObject', () => {
+  describe('should test isObject', () => {
     const model = new BaseModel();
 
     const objects: object[] = [{}, new UserResponseModel()];
     const nonObjects: any[] = [[], true, false, undefined, null, 8, 20.18, '🚀'];
 
-    // tslint:disable-next-line:no-string-literal
-    objects.forEach((object: object) => expect(model['_isObject'](object)).toBeTruthy());
-    // tslint:disable-next-line:no-string-literal
-    nonObjects.forEach((nonObject: any) => expect(model['_isObject'](nonObject)).toBeFalsy());
+    test.each(objects)('toBeTruthy', (object) => {
+      expect(model['_isObject'](object)).toBeTruthy();
+    });
 
-    console.error('Ignore the "Something is wrong!" errors. They are expected.');
+    test.each(nonObjects)('toBeTruthy', (nonObject) => {
+      expect(model['_isObject'](nonObject)).toBeFalsy();
+    });
   });
 
   test('should test IConversionOption', () => {
@@ -291,7 +298,6 @@ describe('BaseModel', () => {
 
   test('should test non existent keys on IConversionOption', () => {
     expect(() => {
-      // tslint:disable-next-line:no-unused-expression
       new NonExistentKeyConversionModel({});
     }).toThrow(SyntaxError);
   });

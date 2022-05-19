@@ -1,5 +1,4 @@
-import { BaseModel } from '../../../src';
-import { IBaseModelOptions } from '../../../src/BaseModel.types';
+import { BaseModel, IBaseModelOptions } from '../../../src';
 
 export class NameModel extends BaseModel {
   public title: string = '';
@@ -10,9 +9,5 @@ export class NameModel extends BaseModel {
     super(opts);
 
     this.update(data);
-  }
-
-  public update(data: Partial<NameModel>): void {
-    super.update(data);
   }
 }

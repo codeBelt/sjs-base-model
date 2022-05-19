@@ -191,16 +191,6 @@ export default class SomeModel extends BaseModel {
 
 There are a couple of properties on the `BaseModel`. If you call the `.toJSON();` method on the model it will remove all `sjs-base-model` specific properties.
 
-#### sjsId
-
-Each `sjs-base-model` that is created has a unique model id. You can access it by the `sjsId` property.
-
-```javascript
-const carModel = new CarModel();
-
-carModel.sjsId; // unique model id
-```
-
 #### sjsOptions
 
 Each `sjs-base-model` has an object on it that keeps track of options you can set. You can set these options by passing an object to the `super` method of the class constructor. Currently there is only the option `expand` which accepts a `boolean`. See the [BaseModel Expand Scaffolding](##masemodel-expand-scaffolding) section to learn more.
@@ -225,7 +215,7 @@ carModel.update({ year: 2015, feature: { abs: true } });
 
 #### toJSON()
 
-Converts the BaseModel data into a JSON object and deletes the sjsId property.
+Converts the BaseModel data into a JSON object.
 
 ```javascript
 const json = carModel.toJSON();

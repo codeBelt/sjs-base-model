@@ -19,31 +19,6 @@ describe('Util', () => {
     };
   });
 
-  test('Util.uniqueId()', () => {
-    const expected: number = 1;
-    const actual: number = Util.uniqueId();
-
-    expect(expected).toEqual(actual);
-  });
-
-  test('Util.deletePropertyFromObject()', () => {
-    const obj: any = {
-      name: 'Robert',
-      gender: 'male',
-      phone: '555-555-5555',
-      nested: { name: 'Robert', gender: 'male', phone: '555-555-5555' },
-      arrayWithNullAlso: [{ name: 'Robert', gender: 'male', phone: '555-555-5555' }, null, 0, 'one', true],
-    };
-    const expected: any = {
-      name: 'Robert',
-      nested: { name: 'Robert' },
-      arrayWithNullAlso: [{ name: 'Robert' }, null, 0, 'one', true],
-    };
-    const actual: any = Util.deletePropertyFromObject(obj, ['phone', 'gender']);
-
-    expect(expected).toEqual(actual);
-  });
-
   test('Util.clone()', () => {
     const expected: any = json;
     const actual: any = Util.clone(json);
