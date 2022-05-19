@@ -1,22 +1,30 @@
-import { BaseObject } from '../src/BaseObject';
 import { InfoModel } from './data/models/InfoModel';
+import { Util } from '../src';
+import data from './data/results.json';
 
 describe('BaseObject', () => {
-  test('baseObject.sjsId', () => {
-    const baseObject = new BaseObject();
-    const expected: number = 1;
-    const actual: number = baseObject.sjsId;
+  let json = data;
 
-    expect(expected).toEqual(actual);
+  beforeEach(() => {
+    json = Util.clone(data);
   });
 
   test('baseObject.destroy()', () => {
-    const infoModel = new InfoModel();
+    const infoModel = new InfoModel(json.info as any);
 
-    expect(infoModel.sjsOptions).toEqual({ expand: false });
+    expect(infoModel).toEqual({
+      ...json.info,
+      stringified: JSON.parse(json.info.stringified),
+    });
 
     infoModel.destroy();
 
-    expect(infoModel.sjsOptions).toBe(null);
+    expect(infoModel).toEqual({
+      page: null,
+      results: null,
+      seed: null,
+      stringified: null,
+      version: null,
+    });
   });
 });

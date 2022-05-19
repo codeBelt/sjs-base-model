@@ -1,7 +1,6 @@
 import { NameModel } from './NameModel';
 import { PictureModel } from './PictureModel';
-import { BaseModel } from '../../../src';
-import { IBaseModelOptions } from '../../../src/BaseModel.types';
+import { BaseModel, IBaseModelOptions } from '../../../src';
 
 export class UserModel extends BaseModel {
   public gender: string = '';
@@ -14,9 +13,5 @@ export class UserModel extends BaseModel {
     super(opts);
 
     this.update(data);
-  }
-
-  public update(data: Partial<UserModel>): void {
-    super.update(data);
   }
 }

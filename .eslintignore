@@ -1,0 +1,10 @@
+.generated
+.github
+.jest-cache
+.scripts
+.vscode
+docs
+node_modules
+tools
+build
+*.d.ts

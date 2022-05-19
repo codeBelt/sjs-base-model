@@ -191,16 +191,6 @@ export default class SomeModel extends BaseModel {
 
 There are a couple of properties on the `BaseModel`. If you call the `.toJSON();` method on the model it will remove all `sjs-base-model` specific properties.
 
-#### sjsId
-
-Each `sjs-base-model` that is created has a unique model id. You can access it by the `sjsId` property.
-
-```javascript
-const carModel = new CarModel();
-
-carModel.sjsId; // unique model id
-```
-
 #### sjsOptions
 
 Each `sjs-base-model` has an object on it that keeps track of options you can set. You can set these options by passing an object to the `super` method of the class constructor. Currently there is only the option `expand` which accepts a `boolean`. See the [BaseModel Expand Scaffolding](##masemodel-expand-scaffolding) section to learn more.
@@ -225,7 +215,7 @@ carModel.update({ year: 2015, feature: { abs: true } });
 
 #### toJSON()
 
-Converts the BaseModel data into a JSON object and deletes the sjsId property.
+Converts the BaseModel data into a JSON object.
 
 ```javascript
 const json = carModel.toJSON();
@@ -323,6 +313,8 @@ export default class CarModel extends BaseModel {
 
 ## Release History
 
+- 2022-04-20 v2.0.0 Remove `sjsId`, Move `sjsOptions` out of BaseModel, Add return type to `.toJSON()`, Change return type of `.clone()`, Change types exported paths.
+-
 - 2020-07-29 v1.9.1 Fix deletePropertyFromObject bug; If null was inside an array would cause the code to break.
 
 - 2019-06-23 v1.9.0 IConvertOption now happens before data is assigned to properties. Now if you use ConversionTypeEnum.JSON and have a default model it will create that new model instead of having a plain object.
