@@ -16,8 +16,4 @@ export class UserResponseModel extends BaseModel {
 
     this.update(data);
   }
-
-  public update(data: Partial<UserResponseModel>): void {
-    super.update(data);
-  }
 }
