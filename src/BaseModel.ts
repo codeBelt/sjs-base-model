@@ -81,7 +81,7 @@ export class BaseModel extends BaseObject implements IBaseModel {
    * Provide a way to update the BaseModel.
    *
    * @example
-   *     // Example of updating some of the data:
+   *     // Example of updating some data:
    *     carModel.update({ year: 2015, allWheel: true});
    *
    *     // Of course you can also do it the following way:
