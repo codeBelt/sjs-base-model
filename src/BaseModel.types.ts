@@ -22,7 +22,7 @@ export type BaseModelJson<T> = Omit<T, Exclude<keyof IBaseModel, T> | keyof Base
 export type RecursivePartial<T> = {
   [P in keyof T]?: T[P] extends (infer U)[]
     ? RecursivePartial<U>[]
-    : T[P] extends Record<string, unknown>
+    : T[P] extends Record<string, any>
     ? RecursivePartial<T[P]>
     : T[P];
 };
